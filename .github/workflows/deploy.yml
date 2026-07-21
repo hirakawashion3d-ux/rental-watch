@@ -6,7 +6,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  # Write access is intentionally scoped to this single Pages deployment workflow.
+  # GitHub's generated token expires automatically when the workflow finishes.
+  contents: write
   pages: write
   id-token: write
 
