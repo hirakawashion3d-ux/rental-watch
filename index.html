@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="中央区周辺の同棲向け賃貸候補を整理する個人用ダッシュボード" />
+    <title>Rental Watch</title>
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#latest">最新情報へ移動</a>
+    <main class="shell">
+      <header class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">PERSONAL RENTAL DASHBOARD</p>
+        <h1 id="page-title">Rental Watch</h1>
+        <p class="subtitle">中央区・清澄白河・森下・菊川 同棲賃貸候補</p>
+        <div class="overview" id="overview" aria-live="polite"></div>
+      </header>
+
+      <nav class="filter-bar" aria-label="物件フィルター">
+        <div class="filter-scroll" id="filters"></div>
+      </nav>
+
+      <section id="latest" aria-labelledby="latest-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">WHAT CHANGED</p><h2 id="latest-title">最新情報</h2></div>
+          <p>新しい順</p>
+        </div>
+        <div class="update-list" id="updates"></div>
+      </section>
+
+      <section id="ranking" aria-labelledby="ranking-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">ACTIVE SHORTLIST</p><h2 id="ranking-title">現在の候補ランキング</h2></div>
+          <p>最終確認日時順</p>
+        </div>
+        <div id="rankings"></div>
+      </section>
+
+      <section id="history" aria-labelledby="history-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">COMPLETE HISTORY</p><h2 id="history-title">全物件ログ</h2></div>
+          <p id="history-count"></p>
+        </div>
+        <div id="history-list"></div>
+      </section>
+    </main>
+    <template id="empty-template"><p class="empty-state">この条件に一致する物件はありません。</p></template>
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>

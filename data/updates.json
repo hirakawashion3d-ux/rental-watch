@@ -1,0 +1,7 @@
+[
+  {"id":"u-001","propertyId":"wellith-urban-sumiyoshi-east-102","timestamp":"2026-07-21T09:20:00+09:00","type":"new","title":"ウエリスアーバン住吉EAST 102号室を追加","description":"新築・即入居可。1階条件のため要確認候補として登録。","newValue":"要確認候補"},
+  {"id":"u-002","propertyId":"qualitas-nihonbashi-hamacho-7","timestamp":"2026-07-21T09:00:00+09:00","type":"condition_change","title":"クオリタス日本橋浜町 7階を確認","description":"現況居住中、2026年9月中旬入居予定。寝室約2帖のため実寸確認を継続。","newValue":"2026年9月中旬予定"},
+  {"id":"u-003","propertyId":"es-grande-kiba-koen-3","timestamp":"2026-07-21T08:50:00+09:00","type":"status_change","title":"ES-Grande木場公園 3階は要確認","description":"空家・即入居可の掲載あり。二人入居条件は掲載根拠を追加確認する。","previousValue":"未確認","newValue":"要確認"},
+  {"id":"u-004","propertyId":"eiko-building-3","timestamp":"2026-07-21T08:30:00+09:00","type":"condition_change","title":"栄光ビル 3階は保留継続","description":"複数掲載サイトの空室情報が一致しないため、電話確認が必要。","previousValue":"空室情報が不一致","newValue":"保留・要電話確認"},
+  {"id":"u-005","propertyId":"gran-paseo-morishita-701","timestamp":"2026-07-21T08:10:00+09:00","type":"ended","title":"GRAN PASEO森下 701号室のURL状態を更新","description":"SUUMOは掲載終了または要確認。残存ページも更新日が古く、電話確認待ち。","previousValue":"募集中の可能性","newValue":"保留・要電話確認"}
+]
