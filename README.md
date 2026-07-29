@@ -25,7 +25,7 @@ python -m http.server 8000
 
 ## 更新方法
 
-1. `data/properties.json` の該当物件を追加または更新します。
+1. `data/properties.json` の現行候補を追加または更新します。
 2. `data/updates.json` の先頭へ更新履歴を追加します。
 3. `main` へ commit / push します。
 4. GitHub Actions が同一URLのページを自動更新します。
@@ -40,17 +40,23 @@ git push
 
 `properties.json` に `Property` オブジェクトを追加します。`id` はページ内アンカーにも使うため、英小文字・数字・ハイフンで一意にします。初回検出日時は `firstSeenAt`、確認ごとに `lastCheckedAt`、内容変更ごとに `updatedAt` を日本時間の ISO 8601 で更新します。
 
+画像URLを安定して取得できない場合は、推測した画像URLや一時URLを保存しません。代わりに、問い合わせ可能な物件ページURLを `links` に保持します。
+
 ### 物件を更新する
 
 金額、状態、URL、設備、評価を変更し、`updatedAt` と `lastCheckedAt` を更新します。同時に `updates.json` へ `propertyId` を結び付けた更新レコードを追加します。
 
-### 掲載終了にする
+外部URLはカード内で常時確認できるよう、確証のあるページを `links` に残します。参考ページは `status: "reference"`、要再確認は `status: "needs_confirmation"` とします。
 
-物件の `status` を `ended`、`rank` を `ENDED` に変更します。URL単位で無効なら、そのリンクの `status` を `invalid_url` にし、URL自体は削除しません。どちらの場合も `updates.json` に `type: "ended"` の履歴を残します。
+### 掲載終了を除外する
+
+掲載終了・成約済み・問い合わせ不可を確認した物件は、`properties.json` からオブジェクトごと削除します。`status: "ended"` や `rank: "ENDED"` のカードとして残しません。
+
+削除と同時に `updates.json` の先頭へ `type: "ended"` の履歴を追加します。確認に使用した外部URLは、その更新レコードの `links` に保持します。これにより現行候補一覧を汚さず、終了判断の根拠だけを追跡できます。
 
 ### ランクを変更する
 
-`rank` を `A` / `B` / `CHECK` / `HOLD` / `ENDED` のいずれかに変え、`updates.json` に `type: "rank_change"` と変更前後を記録します。ランキングは `A → B → CHECK → HOLD`、同ランク内は `lastCheckedAt` の新しい順です。
+`rank` を `A` / `B` / `CHECK` / `HOLD` のいずれかに変え、`updates.json` に `type: "rank_change"` と変更前後を記録します。ランキングは `A → B → CHECK → HOLD`、同ランク内は `lastCheckedAt` の新しい順です。
 
 ## JSON フィールド
 
