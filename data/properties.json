@@ -1,7 +1,447 @@
 [
-  {"id":"qualitas-nihonbashi-hamacho-7","name":"クオリタス日本橋浜町","room":"7階","rank":"B","status":"active","summary":"築浅・設備良好。寝室は約2帖と狭いが、生活空間とベッドを分離できる。","address":"東京都中央区日本橋浜町3丁目43-9","areaName":"中央区","totalMonthlyCost":145000,"rent":133000,"managementFee":12000,"deposit":0,"keyMoney":"0.5ヶ月","layout":"1DK","area":25.4,"built":"2022-05","floor":7,"totalFloors":12,"stations":[{"name":"水天宮前駅","minutes":9},{"name":"人形町駅","minutes":13}],"commute":{"suitenguu":"徒歩9分","ningyocho":"徒歩13分"},"occupancy":{"twoPeople":true,"cohabitation":true,"evidence":"二人入居可の掲載あり"},"amenities":["インターネット無料","24時間ゴミ出し","バス・トイレ別","独立洗面台"],"pet":"ペット相談可","layoutReview":{"bedPosition":"約2帖の寝室","deskPosition":"DK側で要現地確認","diningPosition":"DK","circulation":"寝室を独立させても生活動線を確保可能","bedSeparated":true,"narrowRailroadLayout":false,"furnitureFlexibility":"低め。寝室が狭い","coupleLiving":"可能だが寝室の実寸確認が必要","notes":["寝室が約2帖で狭い"]},"buildingReview":{"ageEvaluation":"築浅（2022年）","firstFloorRisk":"7階のため該当なし"},"availability":{"occupancyStatus":"現況居住中","moveInDate":"2026年9月中旬予定","phoneCheckRequired":false,"consistency":"要継続確認","urlCheck":"確認済み"},"links":[{"label":"HOME'S 物件ページ","url":"https://www.homes.co.jp/chintai/room/b47fb200b0f7726efa586ba3c53354bac7443d71/","status":"active"},{"label":"建物ページ（スタートライン）","url":"https://www.start-line.co.jp/build-4815667/","status":"active"}],"firstSeenAt":"2026-07-20T09:00:00+09:00","lastCheckedAt":"2026-07-21T09:00:00+09:00","updatedAt":"2026-07-21T09:00:00+09:00"},
-  {"id":"es-grande-kiba-koen-3","name":"ES-Grande木場公園","room":"3階","rank":"B","status":"needs_confirmation","summary":"DKを生活空間に残し、ベッドを別室に置ける。二人入居条件の明確化が必要。","areaName":"清澄白河","totalMonthlyCost":145000,"rent":135000,"managementFee":10000,"layout":"1DK","area":25.25,"built":"2023-02","floor":3,"stations":[{"name":"清澄白河駅","minutes":"8〜11"}],"occupancy":{"twoPeople":true,"roomShare":true,"evidence":"友人同士可。建物または同タイプで二人入居可の掲載あり"},"amenities":["インターネット無料","24時間ゴミ出し","バス・トイレ別","独立洗面台"],"pet":"ペット相談可","layoutReview":{"bedPosition":"洋室約2.8〜3帖","deskPosition":"DK側を検討","diningPosition":"DK約5.7〜6帖","circulation":"ベッドを別室に置きDKを生活空間として残せる","bedSeparated":true,"furnitureFlexibility":"中程度","coupleLiving":"条件と実寸の確認が必要","notes":["洋室が約2.8〜3帖"]},"buildingReview":{"ageEvaluation":"築浅（2023年）"},"availability":{"occupancyStatus":"空家","moveInDate":"即入居可","phoneCheckRequired":true,"consistency":"二人入居の条件を確認","urlCheck":"確認済み"},"links":[{"label":"HOME'S 建物・物件ページ","url":"https://www.homes.co.jp/chintai/b-1176470044487/","status":"needs_confirmation"}],"firstSeenAt":"2026-07-20T09:10:00+09:00","lastCheckedAt":"2026-07-21T08:50:00+09:00","updatedAt":"2026-07-21T08:50:00+09:00"},
-  {"id":"eiko-building-3","name":"栄光ビル","room":"3階","rank":"HOLD","status":"on_hold","summary":"広さと駅距離は魅力的。ただし掲載サイト間で空室情報が矛盾しており、電話確認が前提。","address":"東京都中央区日本橋蛎殻町1丁目36-1","areaName":"中央区","totalMonthlyCost":150000,"rent":140000,"managementFee":10000,"deposit":0,"keyMoney":0,"layout":"2LDK","area":56.3,"built":"1977-05","floor":3,"stations":[{"name":"水天宮前駅","minutes":1},{"name":"人形町駅","minutes":"7〜8"}],"commute":{"suitenguu":"徒歩1分","ningyocho":"徒歩7〜8分"},"occupancy":{"twoPeople":true,"cohabitation":true,"evidence":"二人入居可の掲載あり"},"amenities":["角部屋","3面採光","全居室フローリング","内装リフォーム済"],"layoutReview":{"noJapaneseRoomEvidence":"洋室8帖・洋室5.5帖・LDK13帖との掲載","bedPosition":"洋室8帖または5.5帖","deskPosition":"洋室またはLDK","diningPosition":"LDK13帖","circulation":"広さがあり確保しやすい","bedSeparated":true,"narrowRailroadLayout":false,"furnitureFlexibility":"高い","coupleLiving":"しやすい","notes":["築年数と空室状況を確認"]},"buildingReview":{"ageEvaluation":"築年数は経過（1977年）","renovation":"内装リフォーム済","firstFloorRisk":"3階のため該当なし"},"availability":{"phoneCheckRequired":true,"consistency":"掲載サイト間で空室情報が矛盾","urlCheck":"複数URLを要再確認","notes":"電話確認必須"},"links":[{"label":"SUUMO","url":"https://suumo.jp/chintai/jnc_000108633630/?bc=100517699757","status":"needs_confirmation"},{"label":"HOME'S","url":"https://www.homes.co.jp/chintai/b-1403170026580/","status":"needs_confirmation"},{"label":"OHEYAGO","url":"https://oheyago.jp/buildings/19204841/","status":"needs_confirmation"},{"label":"建物ページ（スタートライン）","url":"https://www.start-line.co.jp/build-4396000/","status":"needs_confirmation"}],"firstSeenAt":"2026-07-19T13:00:00+09:00","lastCheckedAt":"2026-07-21T08:30:00+09:00","updatedAt":"2026-07-21T08:30:00+09:00"},
-  {"id":"gran-paseo-morishita-701","name":"GRAN PASEO森下","room":"701号室","rank":"HOLD","status":"on_hold","summary":"駅近・築浅だが、一部URL終了と古い残存更新日のため電話確認待ち。","address":"東京都墨田区千歳3丁目3-10","areaName":"森下","totalMonthlyCost":148000,"rent":138000,"managementFee":10000,"layout":"1DK","area":26.26,"built":"2022-09","floor":7,"totalFloors":9,"stations":[{"name":"森下駅","minutes":3},{"name":"両国駅","minutes":9}],"occupancy":{"twoPeople":true,"evidence":"二人入居可の掲載あり"},"amenities":[],"layoutReview":{"bedPosition":"洋室2.7帖","diningPosition":"DK7.2帖","circulation":"DKを生活空間に使う想定","bedSeparated":true,"furnitureFlexibility":"低め","coupleLiving":"寝室実寸を要確認","notes":["洋室2.7帖"]},"buildingReview":{"ageEvaluation":"築浅（2022年）"},"availability":{"phoneCheckRequired":true,"consistency":"残存ページの更新日が古い","urlCheck":"一部URLが掲載終了または無効","notes":"電話確認必須"},"links":[{"label":"SUUMO","url":"https://suumo.jp/chintai/jnc_000106466934/","status":"ended","note":"掲載終了または要確認"},{"label":"ハウスコム","url":"https://www.housecom.jp/build_423615/","status":"needs_confirmation","note":"更新日が古い"}],"firstSeenAt":"2026-07-18T10:00:00+09:00","lastCheckedAt":"2026-07-21T08:10:00+09:00","updatedAt":"2026-07-21T08:10:00+09:00"},
-  {"id":"wellith-urban-sumiyoshi-east-102","name":"ウエリスアーバン住吉EAST","room":"102号室","rank":"CHECK","status":"needs_confirmation","summary":"新築・条件は良いが1階。立地・広さは1階を妥協するほど突出していない。","address":"東京都江東区猿江1丁目1-11","areaName":"菊川","totalMonthlyCost":150000,"rent":140000,"managementFee":10000,"deposit":0,"keyMoney":0,"layout":"1DK","area":26.11,"built":"2026-02","floor":1,"totalFloors":10,"stations":[{"name":"住吉駅","minutes":"8〜12"},{"name":"菊川駅","minutes":"10〜11"}],"occupancy":{"twoPeople":true,"cohabitation":true,"evidence":"二人入居可の掲載あり"},"amenities":["インターネット無料","24時間ゴミ出し","バス・トイレ別","独立洗面台","新築"],"layoutReview":{"bedPosition":"洋室4.4帖","deskPosition":"DK側を検討","diningPosition":"DK6.3帖","circulation":"家具配置は現地図面で確認","bedSeparated":true,"furnitureFlexibility":"中程度","coupleLiving":"可能だが1階条件を比較","notes":["1階のため通常候補から減点"]},"buildingReview":{"ageEvaluation":"新築（2026年）","firstFloorRisk":"1階。外からの視線・防犯・湿気・浸水を現地確認","flooding":"要ハザードマップ確認","outsideView":"要現地確認","humidity":"要現地確認"},"availability":{"occupancyStatus":"空家","moveInDate":"即入居可","phoneCheckRequired":false,"consistency":"要継続確認","urlCheck":"確認済み"},"links":[{"label":"SUUMO","url":"https://suumo.jp/chintai/jnc_000108340276/?bc=100512495285","status":"needs_confirmation"},{"label":"アパマンショップ","url":"https://www.apamanshop.com/tokyo/108/b52026022100083/20260221004509/","status":"needs_confirmation"}],"firstSeenAt":"2026-07-20T14:00:00+09:00","lastCheckedAt":"2026-07-21T09:20:00+09:00","updatedAt":"2026-07-21T09:20:00+09:00"}
+  {
+    "id": "qualitas-nihonbashi-hamacho-7",
+    "name": "クオリタス日本橋浜町",
+    "room": "7階",
+    "rank": "B",
+    "status": "active",
+    "summary": "築浅・設備良好。寝室は約2帖と狭いが、生活空間とベッドを分離できる。",
+    "address": "東京都中央区日本橋浜町3丁目43-9",
+    "areaName": "中央区",
+    "totalMonthlyCost": 145000,
+    "rent": 133000,
+    "managementFee": 12000,
+    "deposit": 0,
+    "keyMoney": "0.5ヶ月",
+    "layout": "1DK",
+    "area": 25.4,
+    "built": "2022-05",
+    "floor": 7,
+    "totalFloors": 12,
+    "stations": [
+      {
+        "name": "水天宮前駅",
+        "minutes": 9
+      },
+      {
+        "name": "人形町駅",
+        "minutes": 13
+      }
+    ],
+    "commute": {
+      "suitenguu": "徒歩9分",
+      "ningyocho": "徒歩13分"
+    },
+    "occupancy": {
+      "twoPeople": true,
+      "cohabitation": true,
+      "evidence": "二人入居可の掲載あり"
+    },
+    "amenities": [
+      "インターネット無料",
+      "24時間ゴミ出し",
+      "バス・トイレ別",
+      "独立洗面台"
+    ],
+    "pet": "ペット相談可",
+    "layoutReview": {
+      "bedPosition": "約2帖の寝室",
+      "deskPosition": "DK側で要現地確認",
+      "diningPosition": "DK",
+      "circulation": "寝室を独立させても生活動線を確保可能",
+      "bedSeparated": true,
+      "narrowRailroadLayout": false,
+      "furnitureFlexibility": "低め。寝室が狭い",
+      "coupleLiving": "可能だが寝室の実寸確認が必要",
+      "notes": [
+        "寝室が約2帖で狭い"
+      ]
+    },
+    "buildingReview": {
+      "ageEvaluation": "築浅（2022年）",
+      "firstFloorRisk": "7階のため該当なし"
+    },
+    "availability": {
+      "occupancyStatus": "現況居住中",
+      "moveInDate": "2026年9月中旬予定",
+      "phoneCheckRequired": false,
+      "consistency": "要継続確認",
+      "urlCheck": "確認済み"
+    },
+    "links": [
+      {
+        "label": "HOME'S 物件ページ",
+        "url": "https://www.homes.co.jp/chintai/room/b47fb200b0f7726efa586ba3c53354bac7443d71/",
+        "status": "active"
+      },
+      {
+        "label": "建物ページ（スタートライン）",
+        "url": "https://www.start-line.co.jp/build-4815667/",
+        "status": "active"
+      }
+    ],
+    "firstSeenAt": "2026-07-20T09:00:00+09:00",
+    "lastCheckedAt": "2026-07-21T09:00:00+09:00",
+    "updatedAt": "2026-07-21T09:00:00+09:00"
+  },
+  {
+    "id": "es-grande-kiba-koen-3",
+    "name": "ES-Grande木場公園",
+    "room": "3階",
+    "rank": "B",
+    "status": "needs_confirmation",
+    "summary": "DKを生活空間に残し、ベッドを別室に置ける。二人入居条件の明確化が必要。",
+    "areaName": "清澄白河",
+    "totalMonthlyCost": 145000,
+    "rent": 135000,
+    "managementFee": 10000,
+    "layout": "1DK",
+    "area": 25.25,
+    "built": "2023-02",
+    "floor": 3,
+    "stations": [
+      {
+        "name": "清澄白河駅",
+        "minutes": "8〜11"
+      }
+    ],
+    "occupancy": {
+      "twoPeople": true,
+      "roomShare": true,
+      "evidence": "友人同士可。建物または同タイプで二人入居可の掲載あり"
+    },
+    "amenities": [
+      "インターネット無料",
+      "24時間ゴミ出し",
+      "バス・トイレ別",
+      "独立洗面台"
+    ],
+    "pet": "ペット相談可",
+    "layoutReview": {
+      "bedPosition": "洋室約2.8〜3帖",
+      "deskPosition": "DK側を検討",
+      "diningPosition": "DK約5.7〜6帖",
+      "circulation": "ベッドを別室に置きDKを生活空間として残せる",
+      "bedSeparated": true,
+      "furnitureFlexibility": "中程度",
+      "coupleLiving": "条件と実寸の確認が必要",
+      "notes": [
+        "洋室が約2.8〜3帖"
+      ]
+    },
+    "buildingReview": {
+      "ageEvaluation": "築浅（2023年）"
+    },
+    "availability": {
+      "occupancyStatus": "空家",
+      "moveInDate": "即入居可",
+      "phoneCheckRequired": true,
+      "consistency": "二人入居の条件を確認",
+      "urlCheck": "確認済み"
+    },
+    "links": [
+      {
+        "label": "HOME'S 建物・物件ページ",
+        "url": "https://www.homes.co.jp/chintai/b-1176470044487/",
+        "status": "needs_confirmation"
+      }
+    ],
+    "firstSeenAt": "2026-07-20T09:10:00+09:00",
+    "lastCheckedAt": "2026-07-21T08:50:00+09:00",
+    "updatedAt": "2026-07-21T08:50:00+09:00"
+  },
+  {
+    "id": "eiko-building-3",
+    "name": "栄光ビル",
+    "room": "3階",
+    "rank": "HOLD",
+    "status": "on_hold",
+    "summary": "広さと駅距離は魅力的。ただし掲載サイト間で空室情報が矛盾しており、電話確認が前提。",
+    "address": "東京都中央区日本橋蛎殻町1丁目36-1",
+    "areaName": "中央区",
+    "totalMonthlyCost": 150000,
+    "rent": 140000,
+    "managementFee": 10000,
+    "deposit": 0,
+    "keyMoney": 0,
+    "layout": "2LDK",
+    "area": 56.3,
+    "built": "1977-05",
+    "floor": 3,
+    "stations": [
+      {
+        "name": "水天宮前駅",
+        "minutes": 1
+      },
+      {
+        "name": "人形町駅",
+        "minutes": "7〜8"
+      }
+    ],
+    "commute": {
+      "suitenguu": "徒歩1分",
+      "ningyocho": "徒歩7〜8分"
+    },
+    "occupancy": {
+      "twoPeople": true,
+      "cohabitation": true,
+      "evidence": "二人入居可の掲載あり"
+    },
+    "amenities": [
+      "角部屋",
+      "3面採光",
+      "全居室フローリング",
+      "内装リフォーム済"
+    ],
+    "layoutReview": {
+      "noJapaneseRoomEvidence": "洋室8帖・洋室5.5帖・LDK13帖との掲載",
+      "bedPosition": "洋室8帖または5.5帖",
+      "deskPosition": "洋室またはLDK",
+      "diningPosition": "LDK13帖",
+      "circulation": "広さがあり確保しやすい",
+      "bedSeparated": true,
+      "narrowRailroadLayout": false,
+      "furnitureFlexibility": "高い",
+      "coupleLiving": "しやすい",
+      "notes": [
+        "築年数と空室状況を確認"
+      ]
+    },
+    "buildingReview": {
+      "ageEvaluation": "築年数は経過（1977年）",
+      "renovation": "内装リフォーム済",
+      "firstFloorRisk": "3階のため該当なし"
+    },
+    "availability": {
+      "phoneCheckRequired": true,
+      "consistency": "掲載サイト間で空室情報が矛盾",
+      "urlCheck": "複数URLを要再確認",
+      "notes": "電話確認必須"
+    },
+    "links": [
+      {
+        "label": "SUUMO",
+        "url": "https://suumo.jp/chintai/jnc_000108633630/?bc=100517699757",
+        "status": "needs_confirmation"
+      },
+      {
+        "label": "HOME'S",
+        "url": "https://www.homes.co.jp/chintai/b-1403170026580/",
+        "status": "needs_confirmation"
+      },
+      {
+        "label": "OHEYAGO",
+        "url": "https://oheyago.jp/buildings/19204841/",
+        "status": "needs_confirmation"
+      },
+      {
+        "label": "建物ページ（スタートライン）",
+        "url": "https://www.start-line.co.jp/build-4396000/",
+        "status": "needs_confirmation"
+      }
+    ],
+    "firstSeenAt": "2026-07-19T13:00:00+09:00",
+    "lastCheckedAt": "2026-07-21T08:30:00+09:00",
+    "updatedAt": "2026-07-21T08:30:00+09:00"
+  },
+  {
+    "id": "wellith-urban-sumiyoshi-east-102",
+    "name": "ウエリスアーバン住吉EAST",
+    "room": "102号室",
+    "rank": "CHECK",
+    "status": "needs_confirmation",
+    "summary": "新築・条件は良いが1階。立地・広さは1階を妥協するほど突出していない。",
+    "address": "東京都江東区猿江1丁目1-11",
+    "areaName": "菊川",
+    "totalMonthlyCost": 150000,
+    "rent": 140000,
+    "managementFee": 10000,
+    "deposit": 0,
+    "keyMoney": 0,
+    "layout": "1DK",
+    "area": 26.11,
+    "built": "2026-02",
+    "floor": 1,
+    "totalFloors": 10,
+    "stations": [
+      {
+        "name": "住吉駅",
+        "minutes": "8〜12"
+      },
+      {
+        "name": "菊川駅",
+        "minutes": "10〜11"
+      }
+    ],
+    "occupancy": {
+      "twoPeople": true,
+      "cohabitation": true,
+      "evidence": "二人入居可の掲載あり"
+    },
+    "amenities": [
+      "インターネット無料",
+      "24時間ゴミ出し",
+      "バス・トイレ別",
+      "独立洗面台",
+      "新築"
+    ],
+    "layoutReview": {
+      "bedPosition": "洋室4.4帖",
+      "deskPosition": "DK側を検討",
+      "diningPosition": "DK6.3帖",
+      "circulation": "家具配置は現地図面で確認",
+      "bedSeparated": true,
+      "furnitureFlexibility": "中程度",
+      "coupleLiving": "可能だが1階条件を比較",
+      "notes": [
+        "1階のため通常候補から減点"
+      ]
+    },
+    "buildingReview": {
+      "ageEvaluation": "新築（2026年）",
+      "firstFloorRisk": "1階。外からの視線・防犯・湿気・浸水を現地確認",
+      "flooding": "要ハザードマップ確認",
+      "outsideView": "要現地確認",
+      "humidity": "要現地確認"
+    },
+    "availability": {
+      "occupancyStatus": "空家",
+      "moveInDate": "即入居可",
+      "phoneCheckRequired": false,
+      "consistency": "要継続確認",
+      "urlCheck": "確認済み"
+    },
+    "links": [
+      {
+        "label": "SUUMO",
+        "url": "https://suumo.jp/chintai/jnc_000108340276/?bc=100512495285",
+        "status": "needs_confirmation"
+      },
+      {
+        "label": "アパマンショップ",
+        "url": "https://www.apamanshop.com/tokyo/108/b52026022100083/20260221004509/",
+        "status": "needs_confirmation"
+      }
+    ],
+    "firstSeenAt": "2026-07-20T14:00:00+09:00",
+    "lastCheckedAt": "2026-07-21T09:20:00+09:00",
+    "updatedAt": "2026-07-21T09:20:00+09:00"
+  },
+  {
+    "id": "value-maison-ryogoku-2f",
+    "name": "VALUE MAISON ryogoku",
+    "room": "2階・号室非公開",
+    "rank": "CHECK",
+    "status": "active",
+    "summary": "新築・敷礼なし・駅徒歩圏・設備充実。ただし25.58㎡、洋室2.5帖で同棲用としては家具配置が厳しい。",
+    "address": "東京都墨田区緑2丁目10-11",
+    "areaName": "菊川・森下",
+    "totalMonthlyCost": 150000,
+    "rent": 138000,
+    "managementFee": 12000,
+    "deposit": 0,
+    "keyMoney": 0,
+    "layout": "1DK",
+    "area": 25.58,
+    "built": "2026-02",
+    "floor": 2,
+    "totalFloors": 9,
+    "direction": "東",
+    "stations": [
+      {
+        "name": "菊川駅",
+        "minutes": 10
+      },
+      {
+        "name": "森下駅",
+        "minutes": 12
+      },
+      {
+        "name": "両国駅（都営大江戸線）",
+        "minutes": 9
+      }
+    ],
+    "commute": {
+      "shibuya": "森下駅から電車約27〜31分、徒歩を含めドアツードア概ね40〜45分",
+      "toranomonHills": "菊川駅から電車約27〜33分、徒歩を含めドアツードア概ね40〜45分"
+    },
+    "occupancy": {
+      "twoPeople": true,
+      "cohabitation": true,
+      "evidence": "SUUMOに二人入居相談、複数の現行サイトで同じ2階・25.58㎡・総額15万円を確認"
+    },
+    "amenities": [
+      "24時間ゴミ出し",
+      "バス・トイレ別",
+      "室内洗濯機置場",
+      "独立洗面台",
+      "浴室乾燥機",
+      "オートロック",
+      "防犯カメラ",
+      "宅配ボックス",
+      "インターネット無料",
+      "全居室フローリング"
+    ],
+    "pet": "明記なし",
+    "soundproof": "防音・楽器相談・二重サッシ・壁厚の明記なし",
+    "layoutReview": {
+      "noJapaneseRoomEvidence": "間取り図・写真、洋室2.5帖＋DK6.9帖、全居室フローリング表記",
+      "bedPosition": "洋室2.5帖。セミダブルでも収納・出入口との干渉を実寸確認",
+      "deskPosition": "DK6.9帖の壁面に幅80〜100cm程度を想定。二人用テーブルとの両立は厳しい",
+      "diningPosition": "DK6.9帖",
+      "circulation": "ベッドはDK・玄関・キッチン動線から分離できるが、冷蔵庫・食器棚設置後の通路余裕は小さい",
+      "bedSeparated": true,
+      "narrowRailroadLayout": "やや細長い。DKと洋室が連続するため家具配置の自由度は低い",
+      "furnitureFlexibility": "低い",
+      "coupleLiving": "家具を絞る前提。立地・築浅・初期費用を優先する二人向け",
+      "notes": [
+        "洋室2.5帖",
+        "号室非公開",
+        "総額上限ぴったり"
+      ]
+    },
+    "buildingReview": {
+      "ageEvaluation": "新築（2026年2月）",
+      "renovation": "新築のため不要",
+      "plumbing": "新築のため築古配管リスクは小さい",
+      "commonAreaManagement": "新築・オートロック・宅配ボックス・防犯カメラあり。実際の清掃管理は内見確認",
+      "earthquakeResistance": "新築のため現行基準での建築と推定されるが、掲載上の耐震性能等級は未確認",
+      "firstFloorRisk": "2階のため通常候補"
+    },
+    "availability": {
+      "occupancyStatus": "空家",
+      "moveInDate": "即入居可",
+      "phoneCheckRequired": true,
+      "consistency": "HOME'S、ピタットハウス、Woman.CHINTAI、SUUMOで同じ2階・25.58㎡・総額15万円を確認。正式号室は非公開",
+      "urlCheck": "直接ページ・問い合わせ導線を確認",
+      "lastPortalUpdate": "HOME'Sに直近更新表示、ピタットハウスでNEW表示。正式なカレンダー更新日はサイト間で不明瞭"
+    },
+    "links": [
+      {
+        "label": "HOME'S 2階・写真／間取り／問い合わせ",
+        "url": "https://www.homes.co.jp/chintai/b-1510080026758/",
+        "status": "active"
+      },
+      {
+        "label": "Woman.CHINTAI 2階・写真／間取り／問い合わせ",
+        "url": "https://woman.chintai/w-C010087030000005062623120001/",
+        "status": "active"
+      },
+      {
+        "label": "ピタットハウス 募集一覧",
+        "url": "https://www.pitat.com/rent/f_991/railroad/13/199/3284",
+        "status": "active"
+      },
+      {
+        "label": "SUUMO 設備・二人入居条件",
+        "url": "https://suumo.jp/chintai/jnc_000107290504/?bc=100512554658",
+        "status": "active"
+      }
+    ],
+    "imageUrl": null,
+    "floorplanUrl": null,
+    "firstSeenAt": "2026-07-29T14:49:43+09:00",
+    "lastCheckedAt": "2026-07-29T14:49:43+09:00",
+    "updatedAt": "2026-07-29T14:49:43+09:00"
+  }
 ]
