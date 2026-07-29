@@ -1,18 +1,19 @@
 const rankMeta = { A: ["優先度A", "rank-a"], B: ["優先度B", "rank-b"], CHECK: ["要確認候補", "rank-check"], HOLD: ["保留", "rank-hold"], ENDED: ["掲載終了", "rank-ended"] };
-const statusMeta = { active: ["募集中", "status-active"], needs_confirmation: ["要確認", "status-check"], on_hold: ["保留・要電話確認", "status-hold"], ended: ["掲載終了", "status-ended"], invalid_url: ["URL無効", "status-ended"], applied: ["申込あり", "status-applied"], unknown: ["状態不明", "status-unknown"] };
+const statusMeta = { active: ["募集中", "status-active"], needs_confirmation: ["要確認", "status-check"], on_hold: ["保留・要電話確認", "status-hold"], ended: ["掲載終了", "status-ended"], invalid_url: ["URL無効", "status-ended"], applied: ["申込あり", "status-applied"], reference: ["参考URL", "status-unknown"], unknown: ["状態不明", "status-unknown"] };
 const updateMeta = { new: "新着", relisted: "再掲載", price_drop: "値下げ", vacancy: "空室化", condition_change: "条件変更", rank_change: "優先度変更", status_change: "状態変更", ended: "掲載終了", correction: "情報訂正" };
 const filters = [
-  ["all", "すべて"], ["rank:A", "優先度A"], ["rank:B", "優先度B"], ["rank:CHECK", "要確認"], ["rank:HOLD", "保留"], ["rank:ENDED", "掲載終了"],
+  ["all", "すべて"], ["rank:A", "優先度A"], ["rank:B", "優先度B"], ["rank:CHECK", "要確認"], ["rank:HOLD", "保留"],
   ["area:中央区", "中央区"], ["area:清澄白河", "清澄白河"], ["area:森下", "森下"], ["area:菊川", "菊川"], ["floor", "2階以上"], ["size", "30㎡以上"], ["pet", "ペット相談可"], ["two", "二人入居可"], ["active", "募集中のみ"]
 ];
 let properties = [], updates = [], currentFilter = "all";
 const yen = new Intl.NumberFormat("ja-JP", { style: "currency", currency: "JPY", maximumFractionDigits: 0 });
 const date = new Intl.DateTimeFormat("ja-JP", { dateStyle: "medium", timeStyle: "short", timeZone: "Asia/Tokyo" });
 const escapeHtml = (text = "") => String(text).replace(/[&<>'"]/g, (c) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", "'":"&#39;", '"':"&quot;" })[c]);
-const badge = (meta, value) => `<span class="badge ${meta[value][1]}">${meta[value][0]}</span>`;
+const badge = (meta, value) => { const item = meta[value] || meta.unknown || ["未確認", "status-unknown"]; return `<span class="badge ${item[1]}">${item[0]}</span>`; };
 const missing = (v) => v === undefined || v === null || v === "" ? "未確認" : escapeHtml(v);
 const displayDate = (value) => value ? date.format(new Date(value)) : "未確認";
 const money = (v) => typeof v === "number" ? yen.format(v) : missing(v);
+const isCurrent = (p) => p.rank !== "ENDED" && !["ended", "invalid_url"].includes(p.status);
 
 function matches(p) {
   if (currentFilter === "all") return true;
@@ -24,7 +25,7 @@ function matches(p) {
   if (currentFilter === "two") return Boolean(p.occupancy?.twoPeople || p.occupancy?.cohabitation);
   return p.status === "active";
 }
-function propertyCard(p, history = false) {
+function propertyCard(p) {
   const stations = p.stations?.map(s => `${escapeHtml(s.name)} 徒歩${escapeHtml(s.minutes)}分`).join(" / ") || "未確認";
   const availability = p.availability || {};
   const review = p.layoutReview || {}, building = p.buildingReview || {};
@@ -48,21 +49,28 @@ function propertyCard(p, history = false) {
   </article>`;
 }
 function row(label, value) { return `<div><dt>${label}</dt><dd>${missing(value)}</dd></div>`; }
+function updateLinks(update, property) {
+  const links = property?.links || update.links || [];
+  const cardLink = property ? `<a href="#property-${escapeHtml(property.id)}">物件カードへ</a>` : "";
+  const externalLinks = links.map(link => `<a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.label)}</a>`).join(" ");
+  return [cardLink, externalLinks].filter(Boolean).join(" ");
+}
 function render() {
   const visible = properties.filter(matches);
   const active = properties.filter(p => p.status === "active");
-  const counts = { A: 0, B: 0, CHECK: 0, HOLD: 0 }; properties.filter(p => p.status !== "ended" && p.status !== "invalid_url").forEach(p => { if (counts[p.rank] !== undefined) counts[p.rank]++; });
-  document.querySelector("#overview").innerHTML = `<div><span>最終更新</span><strong>${displayDate(Math.max(...properties.map(p => new Date(p.updatedAt))))}</strong></div><div><span>現在の募集中候補</span><strong>${active.length}件</strong></div><div class="count-pills">${["A","B","CHECK","HOLD"].map(r => `<span>${rankMeta[r][0]} <b>${counts[r]}</b></span>`).join("")}</div>`;
+  const counts = { A: 0, B: 0, CHECK: 0, HOLD: 0 }; properties.forEach(p => { if (counts[p.rank] !== undefined) counts[p.rank]++; });
+  const latestUpdated = properties.length ? Math.max(...properties.map(p => new Date(p.updatedAt))) : null;
+  document.querySelector("#overview").innerHTML = `<div><span>最終更新</span><strong>${displayDate(latestUpdated)}</strong></div><div><span>現在の募集中候補</span><strong>${active.length}件</strong></div><div class="count-pills">${["A","B","CHECK","HOLD"].map(r => `<span>${rankMeta[r][0]} <b>${counts[r]}</b></span>`).join("")}</div>`;
   document.querySelector("#filters").innerHTML = filters.map(([id,label]) => `<button class="filter ${id === currentFilter ? "selected" : ""}" data-filter="${id}" aria-pressed="${id === currentFilter}">${label}</button>`).join("");
   document.querySelectorAll(".filter").forEach(btn => btn.addEventListener("click", () => { currentFilter = btn.dataset.filter; render(); }));
   const sortedUpdates = [...updates].sort((a,b) => new Date(b.timestamp)-new Date(a.timestamp));
-  document.querySelector("#updates").innerHTML = sortedUpdates.map(u => { const p = properties.find(x => x.id === u.propertyId); return `<article class="update"><p class="update-date">${displayDate(u.timestamp)} ${updateMeta[u.type]}</p><h3>${escapeHtml(u.title)}</h3><p>${escapeHtml(u.description)}</p>${u.previousValue || u.newValue ? `<p class="change"><span>変更前 ${escapeHtml(u.previousValue || "—")}</span><span>変更後 ${escapeHtml(u.newValue || "—")}</span></p>` : ""}<p class="update-links">${p ? `<a href="#property-${escapeHtml(p.id)}">物件カードへ</a>` : ""}${p?.links?.[0] ? ` <a href="${escapeHtml(p.links[0].url)}" target="_blank" rel="noopener noreferrer">外部物件URL</a>` : ""}</p></article>`).join("") || empty();
+  document.querySelector("#updates").innerHTML = sortedUpdates.map(u => { const p = properties.find(x => x.id === u.propertyId); const links = updateLinks(u, p); return `<article class="update"><p class="update-date">${displayDate(u.timestamp)} ${updateMeta[u.type]}</p><h3>${escapeHtml(u.title)}</h3><p>${escapeHtml(u.description)}</p>${u.previousValue || u.newValue ? `<p class="change"><span>変更前 ${escapeHtml(u.previousValue || "—")}</span><span>変更後 ${escapeHtml(u.newValue || "—")}</span></p>` : ""}${links ? `<p class="update-links">${links}</p>` : ""}</article>`; }).join("") || empty();
   const order = ["A", "B", "CHECK", "HOLD"];
-  const rankings = order.map(r => { const list = visible.filter(p => p.rank === r && !["ended","invalid_url"].includes(p.status)).sort((a,b)=>new Date(b.lastCheckedAt)-new Date(a.lastCheckedAt)); return list.length ? `<section class="rank-group"><h3>${rankMeta[r][0]} <span>${list.length}件</span></h3>${list.map(p => propertyCard(p)).join("")}</section>` : ""; }).join("");
+  const rankings = order.map(r => { const list = visible.filter(p => p.rank === r).sort((a,b)=>new Date(b.lastCheckedAt)-new Date(a.lastCheckedAt)); return list.length ? `<section class="rank-group"><h3>${rankMeta[r][0]} <span>${list.length}件</span></h3>${list.map(p => propertyCard(p)).join("")}</section>` : ""; }).join("");
   document.querySelector("#rankings").innerHTML = rankings || empty();
   const history = [...visible].sort((a,b) => new Date(b.updatedAt)-new Date(a.updatedAt));
   document.querySelector("#history-count").textContent = `${history.length}件表示`;
-  document.querySelector("#history-list").innerHTML = history.map(p => propertyCard(p,true)).join("") || empty();
+  document.querySelector("#history-list").innerHTML = history.map(p => propertyCard(p)).join("") || empty();
 }
 function empty() { return document.querySelector("#empty-template").innerHTML; }
-Promise.all([fetch("data/properties.json"), fetch("data/updates.json")]).then(async ([p,u]) => { if (!p.ok || !u.ok) throw new Error("データを読み込めませんでした。"); properties = await p.json(); updates = await u.json(); render(); }).catch(error => { document.querySelector("main").insertAdjacentHTML("afterbegin", `<p class="error" role="alert">${escapeHtml(error.message)}</p>`); });
+Promise.all([fetch("data/properties.json"), fetch("data/updates.json")]).then(async ([p,u]) => { if (!p.ok || !u.ok) throw new Error("データを読み込めませんでした。"); properties = (await p.json()).filter(isCurrent); updates = await u.json(); render(); }).catch(error => { document.querySelector("main").insertAdjacentHTML("afterbegin", `<p class="error" role="alert">${escapeHtml(error.message)}</p>`); });
