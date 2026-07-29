@@ -570,5 +570,126 @@
     "firstSeenAt": "2026-07-29T17:52:41+09:00",
     "lastCheckedAt": "2026-07-29T17:52:41+09:00",
     "updatedAt": "2026-07-29T17:52:41+09:00"
+  },
+  {
+    "id": "es-grande-kiba-koen-601",
+    "name": "ES-Grande木場公園",
+    "room": "601号室",
+    "rank": "HOLD",
+    "status": "needs_confirmation",
+    "summary": "清澄白河8〜9分、6階、築浅RC、敷礼なし・ネット無料・ペット相談で総額14.85万円。CHINTAIで15時間以内の再掲載を確認したが、サイト間で現況・入居時期が一致しないため要電話確認。",
+    "address": "東京都江東区平野3丁目7-7",
+    "areaName": "清澄白河",
+    "totalMonthlyCost": 148500,
+    "rent": 138500,
+    "managementFee": 10000,
+    "deposit": 0,
+    "keyMoney": 0,
+    "layout": "1DK",
+    "area": 25.25,
+    "built": "2023-02",
+    "floor": 6,
+    "totalFloors": 8,
+    "direction": "北",
+    "stations": [
+      {
+        "name": "清澄白河駅（半蔵門線）",
+        "minutes": "8〜9"
+      },
+      {
+        "name": "清澄白河駅（大江戸線）",
+        "minutes": "8〜11"
+      },
+      {
+        "name": "木場駅",
+        "minutes": 15
+      }
+    ],
+    "commute": {
+      "shibuya": "清澄白河駅から半蔵門線直通約24分。駅徒歩を含めドアツードア概ね35〜40分",
+      "toranomonHills": "清澄白河駅から電車約22〜31分。駅徒歩を含めドアツードア概ね35〜45分"
+    },
+    "occupancy": {
+      "twoPeople": true,
+      "cohabitation": true,
+      "evidence": "HOME'Sの同一6階・25.25㎡直接ページとYahoo!不動産に二人入居可／相談を明記"
+    },
+    "amenities": [
+      "インターネット無料",
+      "24時間ゴミ出し",
+      "バス・トイレ別",
+      "室内洗濯機置場",
+      "独立洗面台",
+      "追焚き",
+      "浴室乾燥機",
+      "オートロック",
+      "防犯カメラ",
+      "宅配ボックス",
+      "角部屋",
+      "二面採光",
+      "全居室フローリング"
+    ],
+    "pet": "ペット相談可（飼育時は敷金積増しの掲載あり）",
+    "soundproof": "RC造だが、防音・楽器相談・二重サッシ・戸境壁厚の明記なし",
+    "layoutReview": {
+      "noJapaneseRoomEvidence": "間取り図・室内写真、洋室3.0帖＋DK6.0帖、全居室フローリング表記",
+      "bedPosition": "洋室3.0帖。セミダブル中心が現実的で、ダブルは収納・出入口との干渉確認が必要",
+      "deskPosition": "DK6.0帖の壁面に幅80〜100cm程度。二人用テーブル、冷蔵庫、食器棚との両立は厳しい",
+      "diningPosition": "DK6.0帖。小型テーブルまたはカウンター利用向き",
+      "circulation": "ベッドを玄関・キッチン動線から分離できるが、冷蔵庫・食器棚設置後の通路余裕は小さい",
+      "bedSeparated": true,
+      "narrowRailroadLayout": "DKと洋室が連続するやや細長い1DK。極端な台形ではない",
+      "furnitureFlexibility": "低い",
+      "coupleLiving": "立地・築浅・固定費・ペット可を優先し、家具を絞れる二人向け。在宅作業机2台には不向き",
+      "notes": [
+        "洋室3.0帖",
+        "25.25㎡",
+        "北向き",
+        "掲載サイト間で現況が不一致"
+      ]
+    },
+    "buildingReview": {
+      "ageEvaluation": "築浅（2023年2月）",
+      "renovation": "築浅のため不要",
+      "plumbing": "築浅のため築古配管リスクは小さい",
+      "commonAreaManagement": "オートロック・防犯カメラ・宅配ボックス・24時間ゴミ出しあり。清掃状態は内見確認",
+      "earthquakeResistance": "2023年築のRC造。耐震等級・戸境仕様は未確認",
+      "firstFloorRisk": "6階のため該当なし"
+    },
+    "availability": {
+      "occupancyStatus": "CHINTAIは即入居可／新着、HOME'Sは居住中・入居相談。現在の空室・申込状況は要電話確認",
+      "moveInDate": "即入居可／相談で不一致",
+      "phoneCheckRequired": true,
+      "consistency": "CHINTAI・Woman.CHINTAI・HOME'S・Yahoo!不動産で同一6階・25.25㎡・総額14.85万円を確認。一方、現況と入居時期が一致しない",
+      "urlCheck": "複数の同一住戸直接ページに問い合わせ導線あり。明確な募集終了・成約済み・申込あり・掲載停止・問い合わせ不可は未確認",
+      "lastPortalUpdate": "CHINTAIで2026-07-29時点『15時間以内に掲載』、Woman.CHINTAIで新着表示。HOME'Sはページ上で直近更新表示がある一方、正式な情報更新日は古い"
+    },
+    "links": [
+      {
+        "label": "CHINTAI 601号室・新着／写真／間取り／問い合わせ",
+        "url": "https://www.chintai.net/detail/bk-C010105782476850069484980001/",
+        "status": "active"
+      },
+      {
+        "label": "Woman.CHINTAI 6階・写真／問い合わせ",
+        "url": "https://woman.chintai/w-0000000620000000000033970024/",
+        "status": "active"
+      },
+      {
+        "label": "HOME'S 6階・写真／間取り／二人入居条件",
+        "url": "https://www.homes.co.jp/chintai/room/4998e6fc5aa6d95080e4abbf8f70ffa1faab2ac7/",
+        "status": "needs_confirmation"
+      },
+      {
+        "label": "Yahoo!不動産 6階・設備／二人入居条件",
+        "url": "https://realestate.yahoo.co.jp/rent/detail/_0000073706547c75fb3b79530eec2b41c64a683f15b2/",
+        "status": "needs_confirmation"
+      }
+    ],
+    "imageUrl": null,
+    "floorplanUrl": null,
+    "firstSeenAt": "2026-07-29T18:52:54+09:00",
+    "lastCheckedAt": "2026-07-29T18:52:54+09:00",
+    "updatedAt": "2026-07-29T18:52:54+09:00"
   }
 ]
