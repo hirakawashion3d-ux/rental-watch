@@ -443,5 +443,132 @@
     "firstSeenAt": "2026-07-29T14:49:43+09:00",
     "lastCheckedAt": "2026-07-29T14:49:43+09:00",
     "updatedAt": "2026-07-29T14:49:43+09:00"
+  },
+  {
+    "id": "ivy-court-nihonbashi-ningyocho-904",
+    "name": "アイビーコート日本橋人形町",
+    "room": "904号室",
+    "rank": "B",
+    "status": "needs_confirmation",
+    "summary": "人形町2分・水天宮前5分・最上階・築浅・ネット無料。立地は強いが25.41㎡、洋室2.9帖、礼金2ヶ月で、公式管理側の空室一覧に904号室が見当たらないため要電話確認。",
+    "address": "東京都中央区日本橋人形町3丁目4-8",
+    "areaName": "人形町・水天宮前",
+    "totalMonthlyCost": 150000,
+    "rent": 150000,
+    "managementFee": 0,
+    "deposit": "1ヶ月",
+    "keyMoney": "2ヶ月",
+    "layout": "1DK",
+    "area": 25.41,
+    "built": "2024-05",
+    "floor": 9,
+    "totalFloors": 9,
+    "direction": "北東",
+    "stations": [
+      {
+        "name": "人形町駅",
+        "minutes": 2
+      },
+      {
+        "name": "水天宮前駅",
+        "minutes": 5
+      },
+      {
+        "name": "小伝馬町駅",
+        "minutes": "7〜9"
+      }
+    ],
+    "commute": {
+      "shibuya": "人形町駅から電車約28分。駅徒歩を含めドアツードア概ね35〜40分",
+      "toranomonHills": "人形町駅から日比谷線直通約15〜16分。駅徒歩を含めドアツードア概ね20〜30分"
+    },
+    "occupancy": {
+      "twoPeople": true,
+      "cohabitation": true,
+      "roomShare": true,
+      "evidence": "SUUMOの904号室直接ページに二人入居可・ルームシェア相談を明記"
+    },
+    "amenities": [
+      "インターネット無料（NURO光）",
+      "24時間ゴミ出し",
+      "バス・トイレ別",
+      "室内洗濯機置場",
+      "独立洗面台",
+      "浴室乾燥機",
+      "オートロック",
+      "防犯カメラ",
+      "宅配ボックス",
+      "ウォークインクローゼット",
+      "シューズインクローゼット",
+      "全居室フローリング",
+      "最上階"
+    ],
+    "pet": "不可（公式物件概要）",
+    "soundproof": "防音・楽器相談・二重サッシ・戸境壁厚の明記なし。鉄骨造のため遮音性は内見確認",
+    "layoutReview": {
+      "noJapaneseRoomEvidence": "904号室の公式室内写真、洋室2.9帖＋DK6.0帖、全居室洋室・全居室フローリング表記",
+      "bedPosition": "洋室2.9帖。セミダブル中心で検討。ダブルは収納・出入口との干渉可能性が高い",
+      "deskPosition": "DK6.0帖の壁面に幅80〜100cm程度。二人用テーブルとの両立は厳しい",
+      "diningPosition": "DK6.0帖。小型テーブルまたはカウンター利用向き",
+      "circulation": "ベッドを玄関・キッチン動線から分離できるが、冷蔵庫・食器棚設置後の通路余裕は小さい",
+      "bedSeparated": true,
+      "narrowRailroadLayout": "やや細長い1DK。極端な台形ではないが家具配置の自由度は低い",
+      "furnitureFlexibility": "低い",
+      "coupleLiving": "立地最優先で家具を絞る二人向け。在宅作業机を2台置く生活には不向き",
+      "notes": [
+        "洋室2.9帖",
+        "25.41㎡",
+        "礼金2ヶ月",
+        "定期借家2年"
+      ]
+    },
+    "buildingReview": {
+      "ageEvaluation": "築浅（2024年5月）",
+      "renovation": "築浅のため不要",
+      "plumbing": "築浅のため築古配管リスクは小さい",
+      "commonAreaManagement": "巡回管理。オートロック・防犯カメラ・宅配ボックスあり。清掃状態は内見確認",
+      "earthquakeResistance": "耐震構造の掲載あり。耐震等級・戸境仕様は未確認",
+      "firstFloorRisk": "9階のため該当なし"
+    },
+    "availability": {
+      "occupancyStatus": "入居者募集中。現況・鍵渡し日は要確認",
+      "moveInDate": "相談／2026年7月下旬表記",
+      "phoneCheckRequired": true,
+      "consistency": "SUUMO・ハウスコム・goo・HOME'Sで904号室、9階、25.41㎡、賃料15万円、管理費なしを確認。一方、公式管理側の空室一覧には904号室が表示されない",
+      "urlCheck": "SUUMO直接ページとgoo直接ページの問い合わせ導線、ハウスコムの904号室現行掲載を確認",
+      "lastPortalUpdate": "ハウスコム 2026-07-27、goo 2026-07-23、SUUMO 2026-07-22（次回2026-07-30）"
+    },
+    "links": [
+      {
+        "label": "SUUMO 904号室・写真／問い合わせ",
+        "url": "https://suumo.jp/chintai/jnc_000108698005/?bc=100518241307",
+        "status": "active"
+      },
+      {
+        "label": "ハウスコム 904号室",
+        "url": "https://www.housecom.jp/room_4503974/",
+        "status": "active"
+      },
+      {
+        "label": "goo住宅・904号室",
+        "url": "https://house.goo.ne.jp/rent/ap/detail/1/13102/030H100518262559/003511000/x1030H100518262559.html",
+        "status": "active"
+      },
+      {
+        "label": "公式・904号室タイプ写真",
+        "url": "https://residenceinfo.mitsui-chintai.co.jp/rent/5590/private-space",
+        "status": "reference"
+      },
+      {
+        "label": "公式管理側・空室一覧",
+        "url": "https://www.mitsui-chintai.co.jp/rf/tatemono/10613",
+        "status": "needs_confirmation"
+      }
+    ],
+    "imageUrl": null,
+    "floorplanUrl": null,
+    "firstSeenAt": "2026-07-29T17:52:41+09:00",
+    "lastCheckedAt": "2026-07-29T17:52:41+09:00",
+    "updatedAt": "2026-07-29T17:52:41+09:00"
   }
 ]
