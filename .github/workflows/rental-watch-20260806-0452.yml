@@ -13,6 +13,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Update rental JSON and remove workflow
-        env:
-          PROP_B64: eyJpZCI6Im5zLXBhcmstcmVzaWRlbmNlLW1vcmlzaGl0YS0yMDIiLCJuYW1lIjoi77yu4oCZ772T44OR44O844Kv44Os44K444OH44Oz44K55qOu5LiLIiwicm9vbSI6IjIwMOWPt+WupCIsInJhbmsiOiJCIiwic3RhdHVzIjoibmVlZHNfY29uZmlybWF0aW9uIiwic3VtbWFyeSI6IuiPiuW3nTTliIbjg7vmn67kuIs45YiG44CBMumaj+OAgeevi+W5tFJD44CBMUxES+ODuzI1LjPjgIHot4HjgIHnt4/poY0xM+S4h+WGhuOAguOBr+ODs+OAgeOCteOCpOODiOOBpzIx5pmC6ZaT5Lul5YaF44Gu5YaN5o6y6LyJ44Go5ZWP44GE5ZCI44KP44Gb5bCO57ea44KS56K66KqN44GX44CB44OP44Km44K544Kz44Og44O7U1VVTU/jgajjgafjgIFjMjAy5Y+35a6k44KS54Wn5ZCI44CC5LqM5Lq65YWl5bGF5Y+v44O75YWo5bGF5a6k44OV44Ot44O844Oq44Oz44Kw44O744Oa44OD44OI相?
+      - name: Update rental JSON and remove temp files
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          payload = json.loads(Path('.github/rental-watch-20260806-0452.json').read_text(encoding='utf-8'))
+          prop = payload['property']
+          update = payload['update']
+
+          properties_path = Path('data/properties.json')
+          updates_path = Path('data/updates.json')
+          properties = json.loads(properties_path.read_text(encoding='utf-8'))
+          updates = json.loads(updates_path.read_text(encoding='utf-8'))
+
+          properties = [p for p in properties if p.get('id') != prop['id']]
+          properties.insert(0, prop)
+          updates = [u for u in updates if u.get('id') != update['id']]
+          updates.insert(0, update)
+
+          properties_path.write_text(json.dumps(properties, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+          updates_path.write_text(json.dumps(updates, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+          PY
+          rm .github/workflows/rental-watch-20260806-0452.yml
+          rm .github/rental-watch-20260806-0452.json
+          git config user.name 'ChatGPT Rental Watch'
+          git config user.email 'actions@users.noreply.github.com'
+          git add data/properties.json data/updates.json .github/workflows/rental-watch-20260806-0452.yml .github/rental-watch-20260806-0452.json
+          git commit -m 'Update rental listings 2026-08-06 04:52 JST'
+          git push
