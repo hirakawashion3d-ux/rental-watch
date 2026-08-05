@@ -44,3 +44,5 @@ jobs:
           git add data/properties.json data/updates.json .github/workflows/rental-watch-one-shot-20260806-0151.yml
           git commit -m 'Update rental listings 2026-08-06 01:51 JST'
           git push
+
+# trigger-run
