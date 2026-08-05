@@ -1,0 +1,47 @@
+name: Rental Watch One Shot 20260806 0555
+
+on:
+  push:
+    paths:
+      - '.github/workflows/rental-watch-one-shot-20260806-0555.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-rental-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update rental JSON data
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          prop_path = Path('.rental-tmp/comforia-morishita-south-505.json')
+          update_path = Path('.rental-tmp/u-20260806-0555-comforia-morishita-south-505.json')
+          properties_path = Path('data/properties.json')
+          updates_path = Path('data/updates.json')
+
+          prop = json.loads(prop_path.read_text(encoding='utf-8'))
+          update = json.loads(update_path.read_text(encoding='utf-8'))
+          properties = json.loads(properties_path.read_text(encoding='utf-8'))
+          updates = json.loads(updates_path.read_text(encoding='utf-8'))
+
+          properties = [p for p in properties if p.get('id') != prop['id']]
+          properties.append(prop)
+          updates = [u for u in updates if u.get('id') != update['id']]
+          updates.insert(0, update)
+
+          properties_path.write_text(json.dumps(properties, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+          updates_path.write_text(json.dumps(updates, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+          PY
+          rm .rental-tmp/comforia-morishita-south-505.json
+          rm .rental-tmp/u-20260806-0555-comforia-morishita-south-505.json
+          rm .github/workflows/rental-watch-one-shot-20260806-0555.yml
+          git config user.name 'ChatGPT Rental Watch'
+          git config user.email 'actions@users.noreply.github.com'
+          git add data/properties.json data/updates.json .rental-tmp .github/workflows/rental-watch-one-shot-20260806-0555.yml
+          git commit -m 'Update rental listings 2026-08-06 05:55 JST'
+          git push
