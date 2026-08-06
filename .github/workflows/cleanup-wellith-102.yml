@@ -1,17 +1,20 @@
 name: One-time rental listing cleanup
-# This second commit triggers the workflow after GitHub has registered it.
 
 on:
   push:
     branches: [main]
     paths:
       - .github/workflows/cleanup-wellith-102.yml
+  issues:
+    types: [opened]
 
 permissions:
   contents: write
+  issues: write
 
 jobs:
   cleanup:
+    if: github.event_name == 'push' || github.event.issue.title == 'Run one-time Wellith 102 cleanup'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -81,3 +84,9 @@ jobs:
           git add data/properties.json data/updates.json .github/workflows/cleanup-wellith-102.yml
           git commit -m "Update rental listings 2026-08-07 03:56 JST"
           git push origin main
+
+      - name: Close trigger issue
+        if: github.event_name == 'issues'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue close "${{ github.event.issue.number }}" --reason completed
