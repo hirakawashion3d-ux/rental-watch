@@ -1,0 +1,55 @@
+name: Rental Watch Cleanup 20260806 1650
+
+on:
+  push:
+    paths:
+      - '.github/workflows/rental-watch-cleanup-20260806-1650.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup-rental-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove ended listing and record history
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          properties_path = Path('data/properties.json')
+          updates_path = Path('data/updates.json')
+
+          properties = json.loads(properties_path.read_text(encoding='utf-8'))
+          properties = [p for p in properties if p.get('id') != 'arkmark-suitengumae-i-405']
+          properties_path.write_text(json.dumps(properties, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+
+          updates = json.loads(updates_path.read_text(encoding='utf-8'))
+          update_id = 'u-20260806-1650-arkmark-suitengumae-i-405-ended'
+          if not any(u.get('id') == update_id for u in updates):
+              updates.insert(0, {
+                  'id': update_id,
+                  'propertyId': 'arkmark-suitengumae-i-405',
+                  'timestamp': '2026-08-06T16:50:57+09:00',
+                  'type': 'ended',
+                  'title': 'ARKMARK水天宮前I 405号室を終了除外',
+                  'description': 'E-Housingの405号室直接ページで「この物件の掲載は終了しました」を確認。ほかの掲載は正式更新日が2026年5月以前または更新日不明で、募集継続を裏付けられないため現行一覧から除外。',
+                  'previousValue': '優先度B・要電話確認',
+                  'newValue': '終了・propertiesから除外',
+                  'links': [{
+                      'label': 'E-Housing 405号室',
+                      'url': 'https://e-housing.jp/ja/rent/tokyo/koto/arkmark-suitengumae/405',
+                      'status': 'ended',
+                      'note': '掲載終了を明記'
+                  }]
+              })
+          updates_path.write_text(json.dumps(updates, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+          PY
+          rm .github/workflows/rental-watch-cleanup-20260806-1650.yml
+          git config user.name 'ChatGPT Rental Watch'
+          git config user.email 'actions@users.noreply.github.com'
+          git add data/properties.json data/updates.json .github/workflows/rental-watch-cleanup-20260806-1650.yml
+          git commit -m 'Update rental listings 2026-08-06 16:50 JST'
+          git push
