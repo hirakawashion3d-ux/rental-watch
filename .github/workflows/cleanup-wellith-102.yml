@@ -1,4 +1,5 @@
 name: One-time rental listing cleanup
+# This second commit triggers the workflow after GitHub has registered it.
 
 on:
   push:
