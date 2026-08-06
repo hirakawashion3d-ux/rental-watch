@@ -3,17 +3,20 @@ name: Deploy GitHub Pages
 on:
   push:
     branches: [main]
+    paths:
+      - index.html
+      - src/**
+      - data/**
+      - .github/workflows/deploy.yml
   workflow_dispatch:
 
 permissions:
-  # Write access is intentionally scoped to this single Pages deployment workflow.
-  # GitHub's generated token expires automatically when the workflow finishes.
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -31,8 +34,14 @@ jobs:
           mkdir _site
           cp index.html _site/
           cp -R src data _site/
-      - uses: actions/upload-pages-artifact@v3
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
+          name: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
           path: ./_site
-      - id: deployment
+      - name: Deploy Pages
+        id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
+          timeout: 1200000
