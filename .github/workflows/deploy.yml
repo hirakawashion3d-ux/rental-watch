@@ -2,18 +2,11 @@ name: Manual GitHub Pages diagnostic
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - trigger-rental-sync.txt
-  issues:
-    types: [opened]
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
-  issues: write
 
 # Automatic custom-workflow deployment is paused because GitHub Pages accepts
 # the artifact but leaves the deployment in deployment_queued until timeout.
@@ -24,7 +17,6 @@ concurrency:
 
 jobs:
   deploy:
-    if: github.event_name == 'workflow_dispatch'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -58,27 +50,3 @@ jobs:
         with:
           artifact_name: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
           timeout: 600000
-
-  rental-sync:
-    if: github.event_name == 'push' || (github.event_name == 'issues' && github.event.issue.title == 'Run registered rental sync 2026-08-07 06:56 JST')
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Apply verified rental changes
-        run: python scripts/rental_update_once.py
-      - name: Restore workflow and commit synchronized data
-        run: |
-          git config user.name "rental-watch-bot"
-          git config user.email "actions@users.noreply.github.com"
-          git show b3e8d61a7d4cfd8bb1e22383ea219363c57c828b:.github/workflows/deploy.yml > .github/workflows/deploy.yml
-          git rm -f .github/workflows/rental-update-once.yml scripts/rental_update_once.py trigger-rental-sync.txt
-          git add data/properties.json data/updates.json .github/workflows/deploy.yml
-          git commit -m "Update rental listings 2026-08-07 06:56 JST"
-          git push origin main
-      - name: Close trigger issue
-        if: github.event_name == 'issues'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh issue close "${{ github.event.issue.number }}" --reason completed
