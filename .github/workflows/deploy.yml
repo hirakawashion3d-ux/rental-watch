@@ -1,13 +1,6 @@
-name: Deploy GitHub Pages
+name: Manual GitHub Pages diagnostic
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - index.html
-      - src/**
-      - data/**
-      - .github/workflows/deploy.yml
   workflow_dispatch:
 
 permissions:
@@ -15,8 +8,9 @@ permissions:
   pages: write
   id-token: write
 
-# Pages is a production deployment. Never cancel an in-progress deployment,
-# because GitHub Pages can retain a backend deployment lock after cancellation.
+# Automatic custom-workflow deployment is paused because GitHub Pages accepts
+# the artifact but leaves the deployment in deployment_queued until timeout.
+# Keep production deployments serialized and never cancel one in progress.
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -36,39 +30,12 @@ jobs:
           python -m json.tool data/properties.json >/dev/null
           python -m json.tool data/updates.json >/dev/null
 
-      - name: Cancel stale Pages deployments
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          stale_deployments=(
-            5c9333a5192733972049a2670b156e6e7a8c6faa
-            323e5d4b4762bfad2e904ea14cf7715ca8d8b3a4
-            04944589c96fc736b77491f488bb58cd78a8fd50
-          )
-
-          for deployment_id in "${stale_deployments[@]}"; do
-            response_file="$(mktemp)"
-            http_code="$({ curl -sS -L \
-              -o "$response_file" \
-              -w '%{http_code}' \
-              -X POST \
-              -H 'Accept: application/vnd.github+json' \
-              -H "Authorization: Bearer ${GH_TOKEN}" \
-              -H 'X-GitHub-Api-Version: 2022-11-28' \
-              "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages/deployments/${deployment_id}/cancel"; } || true)"
-
-            echo "Cancel ${deployment_id}: HTTP ${http_code}"
-            if [[ "$http_code" != "204" && "$http_code" != "404" ]]; then
-              cat "$response_file"
-            fi
-            rm -f "$response_file"
-          done
-
       - name: Prepare static site
         run: |
           rm -rf _site
           mkdir _site
           cp index.html _site/
+          cp .nojekyll _site/
           cp -R src data _site/
 
       - name: Upload Pages artifact
