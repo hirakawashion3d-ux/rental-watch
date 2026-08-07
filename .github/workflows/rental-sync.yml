@@ -1,0 +1,146 @@
+name: Rental listing sync
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - data/rental-sync-trigger.json
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Patch rental JSON
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+
+          checked_at = "2026-08-07T16:49:51+09:00"
+          property_id = "es-grande-kiba-koen-401"
+
+          prop = {
+            "id": property_id,
+            "name": "ES-Grande木場公園",
+            "room": "401号室",
+            "rank": "B",
+            "status": "needs_confirmation",
+            "summary": "清澄白河8〜9分、4階、築浅RC、1DK・25.25㎡、総額15万円。HOME'Sの2026-08-06更新の直接ページで空室・即入居可・問い合わせ可能を確認し、SUUMO・いい部屋ネットでも同一401号室を照合。旧価格14.2万円の残存掲載があるため優先度B・要電話確認。",
+            "address": "東京都江東区平野3丁目7-7",
+            "areaName": "清澄白河",
+            "totalMonthlyCost": 150000,
+            "rent": 140000,
+            "managementFee": 10000,
+            "deposit": 0,
+            "keyMoney": 0,
+            "layout": "1DK",
+            "area": 25.25,
+            "built": "2023-02",
+            "floor": 4,
+            "totalFloors": 8,
+            "direction": "北",
+            "stations": [
+              {"name": "清澄白河駅", "minutes": "8〜9"},
+              {"name": "木場駅", "minutes": 15},
+              {"name": "菊川駅", "minutes": 16}
+            ],
+            "commute": {
+              "shibuya": "清澄白河駅から半蔵門線直通約24分。駅徒歩を含めドアツードア概ね35〜40分",
+              "toranomon": "清澄白河駅から電車約23〜24分（乗換あり）。駅徒歩を含めドアツードア概ね35〜45分"
+            },
+            "occupancy": {
+              "twoPeople": True,
+              "cohabitation": True,
+              "evidence": "HOME'Sの401号室直接ページに二人入居可を明記。SUUMOといい部屋ネットの同一401号室でも二人入居可／二人可を確認"
+            },
+            "amenities": [
+              "インターネット無料", "24時間ゴミ出し", "バス・トイレ別", "室内洗濯機置場",
+              "独立洗面台", "追焚き", "浴室乾燥機", "オートロック", "防犯カメラ",
+              "宅配ボックス", "角部屋", "二面採光", "全居室フローリング"
+            ],
+            "pet": "ペット相談可（飼育時の敷金積増し等は要確認）",
+            "soundproof": "RC造だが、防音・楽器相談・二重サッシ・戸境壁厚の明記なし。いい部屋ネットでは楽器不可のため強い防音加点なし",
+            "layoutReview": {
+              "noJapaneseRoomEvidence": "401号室の現行HOME'Sページに間取り図・室内写真があり、DK6帖＋洋室3帖、全居室フローリング表記を確認。和室・畳なし",
+              "bedPosition": "洋室3帖。セミダブル中心が現実的。ダブルは収納・出入口・通路との干渉を内見で実測",
+              "deskPosition": "DK6帖の壁面に幅80〜100cm程度の机1台を想定。二人分の常設机は難しい",
+              "diningPosition": "DK6帖。小型2人用テーブルまたは作業机との兼用が現実的",
+              "circulation": "ベッドを玄関・キッチン動線から分離できる。冷蔵庫・食器棚設置後はDKの通路余裕が小さくなるため実測推奨",
+              "bedSeparated": True,
+              "narrowRailroadLayout": "極端なうなぎの寝床ではないが、25.25㎡のコンパクト1DKで家具余白は小さい",
+              "furnitureFlexibility": "低〜中",
+              "coupleLiving": "立地・築浅・初期費用を優先し家具を絞れる二人向け。在宅机2台には不向き",
+              "notes": ["洋室3帖", "総額上限15万円", "旧価格14.2万円の残存掲載あり"]
+            },
+            "buildingReview": {
+              "ageEvaluation": "築3年（2023年2月）。築25年以内の通常評価",
+              "renovation": "築浅のため通常不要。履歴未確認",
+              "plumbing": "築浅のため築古配管リスクは小さい。更新履歴は未確認",
+              "commonAreaManagement": "オートロック・防犯カメラ・宅配ボックス・24時間ゴミ出しあり。実際の清掃・管理状態は内見確認",
+              "earthquakeResistance": "2023年築のRC造。耐震等級は未確認",
+              "firstFloorRisk": "4階のため該当なし"
+            },
+            "availability": {
+              "occupancyStatus": "空家",
+              "moveInDate": "即入居可",
+              "listingUpdatedAt": "HOME'S 2026-08-06更新。SUUMOの同一401号室は2026-07-14更新、いい部屋ネットは更新日明記なしだが同一号室の現行問い合わせ導線を確認",
+              "phoneCheckRequired": True,
+              "consistency": "HOME'S・SUUMO・いい部屋ネット・CHINTAI系で401号室、4階、14万円＋管理費1万円、25.25㎡を照合。旧14.2万円の残存掲載があるため正式賃料を電話確認",
+              "urlCheck": "2026-08-07通知直前にHOME'Sの401号室直接ページを開き、空室・即入居可・見学予約／問い合わせ導線を確認。募集終了・成約済み・申込あり・掲載停止・問い合わせ不可の明示なし",
+              "notes": "現在の申込有無、正式賃料、ペット増額条件、内見可能日時、防音仕様を電話確認"
+            },
+            "links": [
+              {"label": "HOME'S 401号室・2026-08-06更新／写真／間取り／問い合わせ", "url": "https://www.homes.co.jp/chintai/room/8f53940e062123ce5da4f55aed7591d60c652fde/", "status": "active"},
+              {"label": "SUUMO 401号室・写真／設備／二人入居", "url": "https://suumo.jp/chintai/jnc_000108408871/?bc=100516069177", "status": "needs_confirmation"},
+              {"label": "いい部屋ネット 401号室・写真／間取り／二人可", "url": "https://www.eheya.net/detail/300001372032517000001/", "status": "needs_confirmation"}
+            ],
+            "imageUrl": None,
+            "floorplanUrl": None,
+            "firstSeenAt": checked_at,
+            "lastCheckedAt": checked_at,
+            "updatedAt": checked_at
+          }
+
+          update = {
+            "id": "u-20260807-1649-es-grande-kiba-koen-401",
+            "propertyId": property_id,
+            "timestamp": checked_at,
+            "type": "relisted",
+            "title": "ES-Grande木場公園 401号室を再掲載候補として追加",
+            "description": "清澄白河8〜9分、4階、築浅RC、1DK・25.25㎡、総額15万円、敷礼なし。HOME'Sの2026-08-06更新の直接ページで空室・即入居可・問い合わせ可能を確認し、SUUMO・いい部屋ネットでも同一401号室を照合。二人入居可・全居室フローリング・ネット無料・ペット相談・24時間ゴミ出しを確認。旧14.2万円の残存掲載があるため優先度B・要電話確認。",
+            "newValue": "優先度B・要電話確認",
+            "links": prop["links"]
+          }
+
+          properties_path = Path("data/properties.json")
+          updates_path = Path("data/updates.json")
+          properties = json.loads(properties_path.read_text(encoding="utf-8"))
+          updates = json.loads(updates_path.read_text(encoding="utf-8"))
+
+          if not any(p.get("id") == property_id or (p.get("name") == prop["name"] and p.get("room") == prop["room"] and p.get("rent") == prop["rent"] and p.get("area") == prop["area"]) for p in properties):
+              properties.insert(0, prop)
+
+          if not any(u.get("id") == update["id"] or (u.get("propertyId") == property_id and u.get("type") == update["type"] and u.get("newValue") == update["newValue"]) for u in updates):
+              updates.insert(0, update)
+
+          properties_path.write_text(json.dumps(properties, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+          updates_path.write_text(json.dumps(updates, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+
+      - name: Commit rental update
+        run: |
+          if git diff --quiet -- data/properties.json data/updates.json; then
+            echo "No rental JSON changes"
+            exit 0
+          fi
+          git config user.name "rental-watch"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/properties.json data/updates.json
+          git commit -m "Update rental listings 2026-08-07 16:49 JST"
+          git push
