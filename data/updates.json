@@ -1,5 +1,22 @@
 [
   {
+    "id": "u-20261002-2138-three-s-cross-601-ended",
+    "propertyId": "three-s-cross-601",
+    "timestamp": "2026-10-02T21:38:31+09:00",
+    "type": "ended",
+    "title": "3 s cross 601号室を終了除外",
+    "description": "追跡SUUMO 601号室directは2026-10-02時点で物件ライブラリーへ移行し、同一号室へ直接問い合わせできない。別の601号室掲載は鮮度不足・更新日不明で、二人入居根拠と管理費も追跡条件と一致しないため、厳格ルールに従い現行候補から除外。",
+    "previousValue": "A",
+    "newValue": "終了・除外",
+    "links": [
+      {
+        "label": "SUUMO 601号室追跡direct",
+        "url": "https://suumo.jp/chintai/bc_100504848734/",
+        "status": "ended"
+      }
+    ]
+  },
+  {
     "id": "u-20261002-1928-due-ryogoku-iii-1003",
     "propertyId": "due-ryogoku-iii-1003",
     "timestamp": "2026-10-02T19:28:58+09:00",
