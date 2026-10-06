@@ -1,5 +1,26 @@
 [
   {
+    "id": "u-20261006-1026-liveflat-morishita-ii-401",
+    "propertyId": "liveflat-morishita-ii-401",
+    "timestamp": "2026-10-06T10:26:01+09:00",
+    "type": "new",
+    "title": "LiveFlat森下II 401号室を新規確認",
+    "description": "森下7分、4階北西向き角部屋、1DK・27.3㎡、総額13.8万円、敷礼0。HOME'Sは2026-10-06更新で空家・問い合わせ可能、SUUMO/Canary/Woman.CHINTAIでも同一401号室を現行確認。入居時期が即入居・相談・リフォーム中で食い違うためHOLD・要電話確認。",
+    "newValue": "HOLD・要電話確認",
+    "links": [
+      {
+        "label": "HOME'S 401号室 exact",
+        "url": "https://www.homes.co.jp/chintai/b-1176450038795/",
+        "status": "active"
+      },
+      {
+        "label": "SUUMO 401号室 exact",
+        "url": "https://suumo.jp/chintai/bc_100528802635/",
+        "status": "active"
+      }
+    ]
+  },
+  {
     "id": "u-20261002-2138-three-s-cross-601-ended",
     "propertyId": "three-s-cross-601",
     "timestamp": "2026-10-02T21:38:31+09:00",

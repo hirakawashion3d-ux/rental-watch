@@ -1,5 +1,126 @@
 [
   {
+    "id": "liveflat-morishita-ii-401",
+    "name": "LiveFlat森下II",
+    "room": "401号室",
+    "rank": "HOLD",
+    "status": "needs_confirmation",
+    "summary": "森下7分、4階北西向き角部屋、1DK・27.3㎡、総額13.8万円、敷礼0。HOME'Sは10/6更新で空家・入居相談、SUUMOは即入居、Woman.CHINTAIは2026年10月下旬リフォーム中と入居状態が食い違うためHOLD・要電話確認。",
+    "address": "東京都江東区新大橋1丁目11-7",
+    "areaName": "森下・浜町",
+    "totalMonthlyCost": 138000,
+    "rent": 128000,
+    "managementFee": 10000,
+    "deposit": 0,
+    "keyMoney": 0,
+    "layout": "1DK（DK5.8帖＋洋室4.7帖）",
+    "area": 27.3,
+    "built": "2024-09",
+    "floor": 4,
+    "totalFloors": 5,
+    "direction": "北西・角部屋",
+    "stations": [
+      {
+        "name": "森下駅",
+        "minutes": 7
+      },
+      {
+        "name": "両国駅",
+        "minutes": 10
+      },
+      {
+        "name": "浜町駅",
+        "minutes": "11〜12"
+      }
+    ],
+    "commute": {
+      "shibuya": "森下から鉄道約25〜30分、駅徒歩7分・待ち時間込み概ね37〜43分",
+      "toranomonHills": "森下から鉄道約22〜29分、駅徒歩7分・待ち時間込み概ね32〜40分"
+    },
+    "occupancy": {
+      "twoPeople": true,
+      "cohabitation": true,
+      "evidence": "HOME'S同一401号室に「二人入居可」。SUUMO同一401号室にも「2人入居可」を明記"
+    },
+    "amenities": [
+      "バス・トイレ別",
+      "室内洗濯機置場",
+      "独立洗面台",
+      "追焚き",
+      "浴室乾燥機",
+      "温水洗浄便座",
+      "2口システムキッチン",
+      "オートロック",
+      "防犯カメラ",
+      "TVモニター付インターホン",
+      "宅配ボックス",
+      "インターネット無料",
+      "光ファイバー",
+      "クローゼット",
+      "シューズボックス",
+      "全居室フローリング",
+      "角部屋",
+      "二面採光"
+    ],
+    "pet": "不可（HOME'S/SUUMOの同一401号室）",
+    "soundproof": "RC造だが、二重サッシ・戸境壁厚・遮音等級・楽器相談などの具体的な強い防音根拠は確認できず",
+    "layoutReview": {
+      "noJapaneseRoomEvidence": "洋室4.7帖＋DK5.8帖、間取り図・室内写真・全居室フローリングを確認。和室・畳なし",
+      "bedPosition": "洋室4.7帖を寝室に。セミダブルは現実的、ダブルは収納扉とベッド脇通路の実寸確認推奨",
+      "deskPosition": "DK壁面に幅80〜100cm程度の机1台を置く案",
+      "diningPosition": "小型2人用テーブルとコンパクト机の両立は有効幅次第。大型机2台＋通常食卓は厳しめ",
+      "circulation": "寝室を玄関・キッチンの主動線から分離可能",
+      "bedSeparated": true,
+      "narrowRailroadLayout": false,
+      "furnitureFlexibility": "中",
+      "coupleLiving": "27.3㎡でコンパクトだが、寝室分離・森下7分・敷礼0・無料ネットのバランスが良い"
+    },
+    "buildingReview": {
+      "ageEvaluation": "築約2年で通常評価",
+      "renovation": "築浅のため通常は不要。ただしWoman.CHINTAIに2026年10月下旬リフォーム中の記載があり現況確認が必要",
+      "plumbing": "築浅。更新履歴を必須とする年代ではない",
+      "commonAreaManagement": "オートロック・防犯カメラ・宅配BOX等を確認",
+      "earthquakeResistance": "耐震構造の掲載あり・耐震等級は未確認",
+      "firstFloorRisk": "4階のため該当なし"
+    },
+    "availability": {
+      "occupancyStatus": "募集中。HOME'Sは空家、Woman.CHINTAIはリフォーム中表記で現況差あり",
+      "moveInDate": "HOME'S:相談 / SUUMO:即入居 / Woman.CHINTAI:2026年10月下旬リフォーム中",
+      "listingUpdatedAt": "HOME'S 2026-10-06、Woman.CHINTAI 2026-09-29、SUUMO 2026-09-26",
+      "phoneCheckRequired": true,
+      "consistency": "401号室・4階・12.8万円＋1万円・27.3㎡・北西向きは複数サイト一致。入居状態・最短入居日のみ不一致",
+      "urlCheck": "2026-10-06 10:26 JSTにHOME'S 401号室exactを直接開き、空家・問い合わせ可能を確認。SUUMO/Canary/Woman.CHINTAIの同一401号室現行ページも確認",
+      "notes": "現在の申込有無、リフォーム実施有無と完了日、最短入居日、洋室4.7帖の有効寸法、ダブル設置後の通路、戸境壁・窓の遮音仕様を要電話確認"
+    },
+    "links": [
+      {
+        "label": "HOME'S 401号室 exact",
+        "url": "https://www.homes.co.jp/chintai/b-1176450038795/",
+        "status": "active"
+      },
+      {
+        "label": "SUUMO 401号室 exact",
+        "url": "https://suumo.jp/chintai/bc_100528802635/",
+        "status": "active"
+      },
+      {
+        "label": "Canary 401号室 exact",
+        "url": "https://web.canary-app.jp/chintai/rooms/790ca555-fc93-4204-9ee7-034e80d9906b/",
+        "status": "active"
+      },
+      {
+        "label": "Woman.CHINTAI 401号室",
+        "url": "https://woman.chintai/w-0000000790000000000955970005/",
+        "status": "active"
+      }
+    ],
+    "imageUrl": null,
+    "floorplanUrl": null,
+    "firstSeenAt": "2026-10-06T10:26:01+09:00",
+    "lastCheckedAt": "2026-10-06T10:26:01+09:00",
+    "updatedAt": "2026-10-06T10:26:01+09:00"
+  },
+  {
     "id": "due-ryogoku-iii-1003",
     "name": "ドゥーエ両国III",
     "room": "1003号室",
