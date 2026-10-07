@@ -1,5 +1,75 @@
 [
   {
+    "id": "u-20261007-1010-gala-vista-suitengumae-904-ended",
+    "propertyId": "gala-vista-suitengumae-904",
+    "timestamp": "2026-10-07T10:10:06+09:00",
+    "type": "ended",
+    "title": "ガーラ・ヴィスタ水天宮前 904号室を終了除外",
+    "description": "追跡していたSUUMO 904号室directは2026-10-07時点で物件ライブラリーへ移行し「過去の掲載情報を元に作成」と表示。同一904号室の現在問い合わせ可能なexact directを確認できないため、厳格ルールに従いpropertiesから削除。",
+    "previousValue": "B",
+    "newValue": "終了・除外",
+    "links": [
+      {
+        "label": "SUUMO 904号室追跡direct",
+        "url": "https://suumo.jp/chintai/jnc_000109019309/?bc=100521832803",
+        "status": "ended"
+      }
+    ]
+  },
+  {
+    "id": "u-20261007-1010-urbanex-fukagawa-sumiyoshi-iii-802-price",
+    "propertyId": "urbanex-fukagawa-sumiyoshi-iii-802",
+    "timestamp": "2026-10-07T10:10:06+09:00",
+    "type": "condition_change",
+    "title": "アーバネックス深川住吉III 802号室が1万円値下げ",
+    "description": "Git現行の賃料13.9万円＋管理費1万円から、HOME'S 802号室（2026-10-07更新）・Housecom 802号室（10-06更新）・CHINTAI現行同一住戸（10-04更新）で賃料13.8万円＋管理費1万円を確認。総額14.9万円→14.8万円。一部仲介に旧13.9万円表示が残るため正式賃料は要電話確認。",
+    "previousValue": "総額14.9万円（賃料13.9万円＋管理費1万円）",
+    "newValue": "総額14.8万円（賃料13.8万円＋管理費1万円）・要電話確認",
+    "links": [
+      {
+        "label": "HOME'S 802号室 exact",
+        "url": "https://www.homes.co.jp/chintai/room/7c1249e6c84e3f99bbf4b791de225f1e1fdfc45f/",
+        "status": "active"
+      },
+      {
+        "label": "Housecom 802号室 exact",
+        "url": "https://www.housecom.jp/room_4608663/",
+        "status": "active"
+      },
+      {
+        "label": "CHINTAI current direct",
+        "url": "https://www.chintai.net/detail/bk-C010087040000005121573270001/",
+        "status": "active"
+      }
+    ]
+  },
+  {
+    "id": "u-20261007-1010-grand-air-morishita-east-703",
+    "propertyId": "grand-air-morishita-east-703",
+    "timestamp": "2026-10-07T10:10:06+09:00",
+    "type": "new",
+    "title": "グランエール森下EAST 703号室を新規確認",
+    "description": "森下3分・菊川8分・清澄白河13分、7階南西向き、1DK・25.26㎡、総額15.0万円、敷1礼0、2025年6月築。Housecom/HOME'S/Goodroomの703号室exactを現行確認し、同一条件のSUUMO current directで二人入居相談・全居室フローリングを確認。即入居と2026年12月上旬入居で現況差があるためHOLD・要電話確認。",
+    "newValue": "HOLD・要電話確認（総額15.0万円、入居時期不一致）",
+    "links": [
+      {
+        "label": "Housecom 703号室 exact",
+        "url": "https://www.housecom.jp/room_423438/",
+        "status": "active"
+      },
+      {
+        "label": "HOME'S 703号室 exact",
+        "url": "https://www.homes.co.jp/chintai/b-1331530543550/",
+        "status": "active"
+      },
+      {
+        "label": "SUUMO current direct",
+        "url": "https://suumo.jp/chintai/jnc_000100801834/?bc=100529175550&smk=r02",
+        "status": "active"
+      }
+    ]
+  },
+  {
     "id": "u-20261006-1026-liveflat-morishita-ii-401",
     "propertyId": "liveflat-morishita-ii-401",
     "timestamp": "2026-10-06T10:26:01+09:00",
