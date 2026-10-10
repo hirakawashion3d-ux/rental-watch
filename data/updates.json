@@ -1,5 +1,35 @@
 [
   {
+    "id": "u-20261010-1237-shuwa-nihonbashi-hakozaki-residence-915-ended",
+    "propertyId": "shuwa-nihonbashi-hakozaki-residence-915",
+    "timestamp": "2026-10-10T12:37:24+09:00",
+    "type": "ended",
+    "title": "秀和日本橋箱崎レジデンス 915号室を終了・除外",
+    "description": "HOME'S同一9階・36㎡ direct detailが『掲載終了』『現在この物件はお問合せできません』、SUUMO募集directも物件ライブラリーへ移動。",
+    "previousValue": "B",
+    "newValue": "終了・除外"
+  },
+  {
+    "id": "u-20261010-1237-es-grande-kiba-koen-401-ended",
+    "propertyId": "es-grande-kiba-koen-401",
+    "timestamp": "2026-10-10T12:37:24+09:00",
+    "type": "ended",
+    "title": "ES-Grande木場公園 401号室を終了・除外",
+    "description": "HOME'Sの同一4階・25.25㎡ direct detailが2026-10-10確認時点で『掲載終了』『現在この物件はお問合せできません』、SUUMOも旧募集から過去物件ライブラリーへ移動。",
+    "previousValue": "HOLD",
+    "newValue": "終了・除外"
+  },
+  {
+    "id": "u-20261010-1237-residence-kiyosumi-shirakawa-square-605-ended",
+    "propertyId": "residence-kiyosumi-shirakawa-square-605",
+    "timestamp": "2026-10-10T12:37:24+09:00",
+    "type": "ended",
+    "title": "レジデンス清澄白河スクエア 605号室を終了・除外",
+    "description": "追跡Pitat詳細を直接取得できず、Housecomの複数605号室exactが***号室・賃料/費用等***表示に変わり、同建物の現行空き部屋として201号室のみ表示。605の現在問い合わせ可能な直接ページなし。",
+    "previousValue": "B",
+    "newValue": "終了・除外"
+  },
+  {
     "id": "u-20261007-1010-gala-vista-suitengumae-904-ended",
     "propertyId": "gala-vista-suitengumae-904",
     "timestamp": "2026-10-07T10:10:06+09:00",
