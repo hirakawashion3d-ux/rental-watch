@@ -175,3 +175,48 @@ document.querySelector("#facts").addEventListener("submit",e=>{
  if(!persist()){state=JSON.parse(backup);return}
  document.querySelector("#fact-editor").close();render();
 });
+
+function createLocalBackup(raw, exportedAt = new Date().toISOString()) {
+  if (raw === null) return null;
+  const saved = JSON.parse(raw);
+  const object = value => value !== null && typeof value === "object" && !Array.isArray(value);
+  if (!object(saved)) throw new Error("invalid backup source");
+  const result = { prefs: {}, archived: [], restored: [], links: [], overrides: {} };
+  for (const key of ["prefs", "overrides"]) {
+    if (Object.hasOwn(saved, key)) {
+      if (!object(saved[key])) throw new Error("invalid " + key);
+      result[key] = saved[key];
+    }
+  }
+  for (const key of ["archived", "restored", "links"]) {
+    if (Object.hasOwn(saved, key)) {
+      if (!Array.isArray(saved[key])) throw new Error("invalid " + key);
+      result[key] = saved[key];
+    }
+  }
+  return { format: "rental-watch-backup", version: 1, state: result, exportedAt };
+}
+document.querySelector("#export-backup")?.addEventListener("click", () => {
+  const status = document.querySelector("#backup-status");
+  let downloadUrl;
+  try {
+    const backup = createLocalBackup(localStorage.getItem(storageKey));
+    if (!backup) {
+      status.textContent = "このブラウザーに保存済みデータはありません。条件を保存した端末・ブラウザーで開いてください。空のバックアップは作成していません。";
+      return;
+    }
+    const blob = new Blob([JSON.stringify(backup, null, 2)], {type:"application/json;charset=utf-8"});
+    downloadUrl = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = downloadUrl;
+    a.download = "rental-watch-backup-" + backup.exportedAt.replace(/[:.]/g, "-") + ".json";
+    document.body.append(a);
+    a.click();
+    a.remove();
+    status.textContent = "バックアップのダウンロードを開始しました。ファイルに条件・候補・画像・確認入力が含まれます。保存先を確認し、移行先の本人専用画面で取り込んでください。元データは変更していません。";
+  } catch {
+    status.textContent = "バックアップを作成できませんでした。保存データは変更していません。ブラウザーの保存・ダウンロード設定、または保存データの形式を確認してください。";
+  } finally {
+    if (downloadUrl) setTimeout(() => URL.revokeObjectURL(downloadUrl), 60000);
+  }
+});
