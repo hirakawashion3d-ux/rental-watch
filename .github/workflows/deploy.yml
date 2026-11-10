@@ -1,6 +1,8 @@
 name: Manual GitHub Pages diagnostic
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -8,8 +10,8 @@ permissions:
   pages: write
   id-token: write
 
-# Automatic custom-workflow deployment is paused because GitHub Pages accepts
-# the artifact but leaves the deployment in deployment_queued until timeout.
+# Main-branch deployment re-enabled with user approval for this tracker.
+# Prior deployments stalled in deployment_queued; verify each result.
 # Keep production deployments serialized and never cancel one in progress.
 concurrency:
   group: pages
