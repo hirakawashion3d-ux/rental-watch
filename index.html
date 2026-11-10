@@ -1,64 +1,23 @@
 <!doctype html>
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="日本橋・目黒への通勤と二人暮らしの住居探しを整理するダッシュボード" />
-    <title>Rental Watch</title>
-    <link rel="stylesheet" href="src/styles.css" />
-  </head>
-  <body>
-    <a class="skip-link" href="#conditions">検索条件へ移動</a>
-    <main class="shell">
-      <header class="hero" aria-labelledby="page-title">
-        <p class="eyebrow">PERSONAL RENTAL DASHBOARD</p>
-        <h1 id="page-title">Rental Watch</h1>
-        <p class="subtitle">日本橋 × 目黒｜二人暮らし・家賃15万円前後</p>
-        <div class="overview" id="overview" aria-live="polite"></div>
-      </header>
-
-<section id="conditions" aria-labelledby="conditions-title">
-<div class="section-heading"><div><p class="eyebrow">SEARCH BRIEF · 2026.11.10</p><h2 id="conditions-title">まず条件を揃える</h2></div></div>
-<div class="detail-grid">
-<section><h4>確定していること</h4><ul><li>二人暮らし</li><li>日本橋と目黒、両方へ通勤しやすいこと</li><li>家賃は月15万円ほど。できるだけ抑えたい</li></ul><p class="muted">地理的な中間地点に限定せず、両方への移動負担で比較します。</p></section>
-<section><h4>まだ決めていないこと</h4><ul><li>15万円に管理費・共益費を含めるか</li><li>間取り、最低面積、机・ベッドの配置</li><li>各通勤先までの上限時間、駅徒歩</li><li>入居時期、初期費用上限、築年・設備の譲れない条件</li></ul><p class="muted">管理費込み15万円・築年数を許容した2DKは検索上の仮案で、本人の確定条件ではありません。</p></section></div>
-<article class="property-card"><h3>満たせばプラスの希望条件</h3><p>角部屋・鉄筋コンクリート（RC）造。必須条件にはせず、満たす候補を加点します。</p><p class="muted">RC造だけで防音性能が高いとは断定せず、窓・戸境壁・周囲の音も確認します。</p></article><article class="property-card"><h3>比較する順番</h3><ol><li>二人入居条件と最新の募集状況</li><li>賃料＋管理費＋必須月額費用の合計</li><li>日本橋・目黒それぞれへの通勤（駅間と徒歩・待ち時間を分離）</li><li>寝室・作業場所・食事の配置と暮らしやすさ</li><li>初期費用、更新・解約条件、防音・耐震等を確認</li></ol><p>間取り名や築年だけで落とさず、「二人で暮らせる配置」と総額を先に見ます。順位は条件が揃ってから決めます。</p></article>
-<div class="section-heading"><div><p class="eyebrow">AREAS TO COMPARE</p><h2>エリアの比較軸</h2></div></div>
-<div class="detail-grid"><section><h4>西小山</h4><p>目黒への近さを重視する比較案。日本橋側の乗換・所要時間と釣り合うかを確認。</p></section><section><h4>馬込・西馬込</h4><p>日本橋への浅草線直通と、目黒への五反田乗換で比較。西馬込の始発メリットと駅徒歩も確認。</p></section></div>
-<p class="muted">これらは調査候補で、本人の優先順位や居住希望として確定していません。</p>
-<div class="section-heading"><div><p class="eyebrow">CURRENT RESEARCH</p><h2>今回の掲載例</h2></div></div>
-<article class="property-card"><span class="badge status-check">要再確認</span><h3>西小山 徒歩4分｜2DK・42.1㎡</h3><p>11月10日の会話内調査：賃料13万円＋管理費5,000円＝月13.5万円。二人入居可、1994年築、追い焚きなし。</p><p><a href="https://www.homes.co.jp/chintai/b-1270350001645/" target="_blank" rel="noopener noreferrer">HOME'S 掲載ページ</a></p><p class="muted">掲載上の空室・即入居は契約可能の保証ではありません。最新募集、家具配置、必須月額費用を再確認。</p></article>
-<article class="property-card"><span class="badge status-check">二人入居・総額要確認</span><h3>サウスヒルズK 202｜2DK・38.5㎡</h3><p>11月10日の会話内調査：馬込・西馬込とも徒歩12分。賃料12万円、管理費欄「－」。管理費を0円と確定せず、総額は未確定。</p><p><a href="https://www.homes.co.jp/chintai/room/823585c9e7059a5b910cd44ba30de43ab0beedaa/" target="_blank" rel="noopener noreferrer">HOME'S 掲載ページ</a></p><p class="muted">二人入居の可否は未確認。最新募集、部屋寸法、築年に応じた設備・管理を確認。</p></article>
-<article class="property-card"><h3>次の一手</h3><p>まず「15万円の費用範囲」と「二人の机・寝室に必要な広さ」を揃え、この2例と既存候補を同じ条件で比較。次に各候補の最新募集・通勤を確認します。</p><p class="muted">問い合わせ・内見予約・監視の再開は行っていません。旧候補・旧通勤先・確認履歴は下に保存し、今回の現行候補と区別しています。</p></article></section>
-      <nav class="filter-bar" aria-label="物件フィルター">
-        <div class="filter-scroll" id="filters"></div>
-      </nav>
-
-      <section id="latest" aria-labelledby="latest-title">
-        <div class="section-heading">
-          <div><p class="eyebrow">WHAT CHANGED</p><h2 id="latest-title">最新情報</h2></div>
-          <p>新しい順</p>
-        </div>
-        <div class="update-list" id="updates"></div>
-      </section>
-
-      <section id="ranking" aria-labelledby="ranking-title">
-        <div class="section-heading">
-          <div><p class="eyebrow">PREVIOUS SHORTLIST</p><h2 id="ranking-title">以前の候補（新条件・募集状況の再確認待ち）</h2></div>
-          <p>最終確認日時順</p>
-        </div>
-        <div id="rankings"></div>
-      </section>
-
-      <section id="history" aria-labelledby="history-title">
-        <div class="section-heading">
-          <div><p class="eyebrow">COMPLETE HISTORY</p><h2 id="history-title">以前の物件データ・評価</h2></div>
-          <p id="history-count"></p>
-        </div>
-        <div id="history-list"></div>
-      </section>
-    </main>
-    <template id="empty-template"><p class="empty-state">この条件に一致する物件はありません。</p></template>
-    <script type="module" src="src/main.js"></script>
-  </body>
-</html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Rental Watch</title><link rel="stylesheet" href="src/styles.css"></head>
+<body><a class="skip-link" href="#search">条件へ移動</a><main class="shell">
+<header class="hero"><p class="eyebrow">RENTAL WATCH</p><h1>ふたりの住まい探し</h1><p>日本橋 × 目黒 · 家賃15万円前後</p><p class="muted">公開サイトです。保存条件・追加URL・画像はこのブラウザーだけに保存され、他の端末とは同期しません。氏名や連絡先などは入力しないでください。</p></header>
+<nav class="workspace-tabs" aria-label="表示切替"><button data-view="search" aria-pressed="true">条件・ピックアップ</button><button data-view="links" aria-pressed="false">URLカード</button><button data-view="archive" aria-pressed="false">保管庫</button><button data-view="notes" aria-pressed="false">条件メモ・履歴</button></nav>
+<section id="search" class="view"><h2>条件を選んで保存</h2><form id="preferences"><div class="search-grid">
+<label>予算の比較基準<select name="basis"><option value="rent">家賃のみ</option><option value="totalMonthlyCost">家賃＋管理費（把握済み総額）</option></select></label>
+<label>月額上限（円・空欄で指定なし）<input name="budget" type="number" min="0" step="1000" value="150000"></label>
+<label>最低面積（㎡）<input name="minArea" type="number" min="0" step="0.1"></label>
+<label>駅徒歩上限（分）<input name="walk" type="number" min="0"></label>
+<label>間取り<select name="layout"><option value="">指定なし</option><option>1DK</option><option>1LDK</option><option>2K</option><option>2DK</option><option>2LDK</option></select></label>
+<label>エリア・駅・物件名<input name="keyword" type="search" placeholder="例：西小山"></label>
+<label>日本橋まで駅間上限（分）<input name="nihonbashi" type="number" min="0"></label>
+<label>目黒まで駅間上限（分）<input name="meguro" type="number" min="0"></label>
+<label>古い情報を自動で保管<select name="archiveDays"><option value="30">確認から30日超</option><option value="60">60日超</option><option value="90">90日超</option><option value="0">自動保管しない</option></select></label>
+</div><div class="check-row"><label><input type="checkbox" name="two" checked>二人入居を確認</label><label><input type="checkbox" name="unknown" checked>不明な条件は「要確認」で残す</label><label><input type="checkbox" name="corner" checked>角部屋を優先</label><label><input type="checkbox" name="rc" checked>RC造を優先</label></div>
+<p class="muted">初期値は家賃15万円。総額上限は未確定のため切替できます。角部屋・RC造は加点のみ。未確認は不適合と断定しません。通勤は旧通勤先の値を流用せず、未調査なら要確認です。</p>
+<button type="submit" class="primary">条件を保存して絞る</button> <button id="reset-prefs" type="button">初期条件に戻す</button><p id="save-status" role="status"></p></form>
+<div id="overview" aria-live="polite"></div><h2>条件が合う候補</h2><p class="muted">把握済み情報との一致です。現在の空室・契約可能を保証しません。</p><div id="matches"></div><h2>確認できれば候補</h2><div id="uncertain"></div></section>
+<section id="links" class="view" hidden><h2>URLをカードで保存</h2><p>物件URLを貼るとリンクカードになります。登録済みURLなら物件名と条件を表示します。外部サイトの画像自動取得は行わず、手元の画像を付けてビジュアル比較できます。</p><form id="add-link" class="search-grid"><label>物件URL（https）<input name="url" type="url" required placeholder="https://…"></label><label>タイトル（任意）<input name="title" maxlength="120"></label><label>写真・間取り（任意／2MB以下）<input name="image" type="file" accept="image/jpeg,image/png,image/webp"></label><button type="submit">カードを保存</button></form><p id="link-status" role="status"></p><p class="muted">画像がない場合はリンク表示です。サイト制限を回避する取得や第三者のプレビューサービスへのURL送信はしません。追加URLは募集確認・条件照合が済むまでピックアップに混ぜません。</p><div id="link-cards"></div></section>
+<section id="archive" class="view" hidden><h2>保管庫</h2><p>古い記録・掲載終了の記録・自分で保管した候補。削除せず残しています。古いだけで掲載終了とは判断しません。「比較に戻す」で再確認対象に戻せます。</p><div id="archive-list"></div><h3>保管したURLカード</h3><div id="archived-links"></div></section>
+<section id="notes" class="view" hidden><h2>条件メモ</h2><p>確定：二人暮らし・日本橋と目黒への通勤・家賃15万円ほど。希望：角部屋・RC造。未確定：管理費込みか、面積・間取り・駅徒歩・通勤時間・入居時期・初期費用。</p><p>西小山と馬込・西馬込は調査候補で、本人の順位は未確定。RC造だけで防音性を保証しません。自動保管は画面を開いた時の情報整理で、募集の定期監視ではありません。</p><h2>変更履歴</h2><div id="updates"></div></section>
+</main><script type="module" src="src/main.js"></script></body></html>
