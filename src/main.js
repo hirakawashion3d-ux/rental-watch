@@ -37,9 +37,21 @@ function propertyCard(p) {
 function row(label, value) { return `<div><dt>${label}</dt><dd>${missing(value)}</dd></div>`; }
 
 
-const defaults={basis:"rent",budget:"150000",minArea:"",walk:"",layout:"",keyword:"",nihonbashi:"",meguro:"",archiveDays:"30",two:true,unknown:true,corner:true,rc:true};
+const featureLabels=[["cornerRoom","角部屋"],["rcStructure","RC造（鉄筋コンクリート）"],["bathToilet","バス・トイレ別"],["washstand","独立洗面台"],["indoorLaundry","室内洗濯機置場"],["dryer","浴室乾燥機"],["reheat","追い焚き"],["washlet","温水洗浄便座"],["autoLock","オートロック"],["monitor","TVモニター付インターホン"],["delivery","宅配ボックス"],["elevator","エレベーター"],["aircon","エアコン"],["twoBurners","2口以上コンロ"],["internetFree","インターネット無料"],["secondFloor","2階以上"],["topFloor","最上階"],["southFacing","南向き"],["petAllowed","ペット相談可"],["parking","駐車場"],["bicycle","駐輪場"],["balcony","バルコニー"]];
+function featureValue(p,key){
+ if(p.features&&Object.hasOwn(p.features,key))return typeof p.features[key]==="boolean"?p.features[key]:null;
+ if(key==="cornerRoom"&&typeof p.cornerRoom==="boolean")return p.cornerRoom;
+ if(key==="rcStructure"&&p.structure)return p.structure==="RC";
+ if(key==="secondFloor"&&typeof p.floor==="number")return p.floor>=2;
+ if(key==="topFloor"&&typeof p.floor==="number"&&typeof p.totalFloors==="number")return p.floor===p.totalFloors;
+ const aliases={cornerRoom:["角部屋"],bathToilet:["バス・トイレ別","バストイレ別"],washstand:["独立洗面台","洗面所独立"],indoorLaundry:["室内洗濯機置場"],dryer:["浴室乾燥機"],reheat:["追焚き","追い焚き"],washlet:["温水洗浄便座"],autoLock:["オートロック"],monitor:["TVモニター付インターホン","モニター付インターホン"],delivery:["宅配ボックス"],elevator:["エレベーター"],aircon:["エアコン"],twoBurners:["2口コンロ","2口システムキッチン","3口コンロ"],internetFree:["インターネット無料"],bicycle:["駐輪場"],balcony:["バルコニー"]};
+ return (aliases[key]||[]).some(a=>(p.amenities||[]).includes(a))?true:null;
+}
+function mergedProperties(){return properties.map(p=>({...p,...state.overrides[p.id],features:{...p.features,...state.overrides[p.id]?.features}})).concat(state.links.filter(l=>l.property).map(l=>({...l.property,id:l.id,links:[{url:l.url,label:"保存した元ページ"}]})));}
+
+const defaults={basis:"rent",budget:"150000",minArea:"",walk:"",layout:"",keyword:"",nihonbashi:"",meguro:"",archiveDays:"30",two:true,unknown:true,corner:true,rc:true,"feat_cornerRoom":"prefer","feat_rcStructure":"prefer","feat_bathToilet":"","feat_washstand":"","feat_indoorLaundry":"","feat_dryer":"","feat_reheat":"","feat_washlet":"","feat_autoLock":"","feat_monitor":"","feat_delivery":"","feat_elevator":"","feat_aircon":"","feat_twoBurners":"","feat_internetFree":"","feat_secondFloor":"","feat_topFloor":"","feat_southFacing":"","feat_petAllowed":"","feat_parking":"","feat_bicycle":"","feat_balcony":""};
 const storageKey="rental-watch-workspace-v2";
-let state={prefs:{...defaults},archived:[],restored:[],links:[]},properties=[],updates=[];
+let state={prefs:{...defaults},archived:[],restored:[],links:[],overrides:{}},properties=[],updates=[];
 function safeUrl(value){try{const u=new URL(value);return u.protocol==="https:"&&!u.username&&!u.password?u.href:null}catch{return null}}
 function isStale(p,now=Date.now()){const t=Date.parse(p.lastCheckedAt);return !Number.isFinite(t)||now-t>Number(state.prefs.archiveDays||30)*86400000}
 function archiveReason(p){if(state.archived.includes(p.id))return "自分で保管";if(state.restored.includes(p.id))return "";if(["ended","invalid_url"].includes(p.status)||p.rank==="ENDED")return "掲載終了・URL無効の記録";return Number(state.prefs.archiveDays)>0&&isStale(p)?"古い情報・再確認待ち":""}
@@ -53,7 +65,7 @@ function assess(p,prefs=state.prefs){
  if(prefs.two){const o=p.occupancy||{};check(o.singleOnly||o.twoPeople===false?false:o.twoPeople===true||o.cohabitation===true?true:null,"二人入居");}
  if(prefs.keyword)check([p.name,p.address,p.areaName,...(p.stations||[]).map(s=>s.name)].join(" ").includes(prefs.keyword.trim()),"エリア・物件名");
  if(isStale(p))unknown.push("情報の鮮度");
- const score=(prefs.corner&&p.cornerRoom===true?1:0)+(prefs.rc&&p.structure==="RC"?1:0);
+ let score=0;for(const [key,label] of featureLabels){const mode=prefs["feat_"+key];if(!mode)continue;const value=featureValue(p,key);if(mode==="require")check(value,label);else if(mode==="prefer"&&value===true)score++;}
  return {unknown,failed,score};
 }
 function persist(message="保存しました。このブラウザー内で再訪時も保持します。"){
@@ -61,10 +73,10 @@ function persist(message="保存しました。このブラウザー内で再訪
  catch{document.querySelector("#save-status").textContent="保存できませんでした。容量・ブラウザー設定を確認してください。変更はこの画面だけです。";return false}
 }
 function cardWithControls(p,result,reason){
- return '<div class="candidate"><p class="match-note">'+escapeHtml(reason|| (result.unknown.length?"要確認："+result.unknown.join("・"):"指定条件と一致"))+(result.score?" ／希望一致 "+result.score+"点":"")+'</p>'+propertyCard(p)+'<button data-property="'+escapeHtml(p.id)+'" data-action="'+(reason?"restore":"archive")+'">'+(reason?"比較に戻す":"保管する")+'</button></div>';
+ return '<div class="candidate"><p class="match-note">'+escapeHtml(reason|| (result.unknown.length?"要確認："+result.unknown.join("・"):"指定条件と一致"))+(result.score?" ／希望一致 "+result.score+"点":"")+'</p>'+propertyCard(p)+'<button data-property="'+escapeHtml(p.id)+'" data-action="'+(reason?"restore":"archive")+'">'+(reason?"比較に戻す":"保管する")+'</button> <button data-edit="'+escapeHtml(p.id)+'">情報を確認・編集</button><p class="muted">'+escapeHtml(p.factSource?"設備・数値の出典："+p.factSource+" ／確認 "+(p.factCheckedAt||"未記入")+(p.factNote?" ／"+p.factNote:""):"設備は保存済みの記録を参照。記載なしは不明のままです。")+'</p></div>';
 }
 function render(){
- const active=[],archived=[];for(const p of properties){const reason=archiveReason(p);if(reason)archived.push({p,reason});else active.push({p,r:assess(p)})}
+ const active=[],archived=[];for(const p of mergedProperties()){const reason=archiveReason(p);if(reason||state.links.find(l=>l.id===p.id)?.archived)archived.push({p,reason:reason||"自分で保管"});else active.push({p,r:assess(p)})}
  const eligible=active.filter(x=>!x.r.failed.length).sort((a,b)=>b.r.score-a.r.score);
  const matched=eligible.filter(x=>!x.r.unknown.length),uncertain=eligible.filter(x=>x.r.unknown.length);
  const empty='<p class="empty-state">該当なし。条件を緩めるか、保管庫も確認できます。</p>';
@@ -78,19 +90,22 @@ function render(){
  renderLinks();
 }
 function renderLinks(){
- const make=l=>{const url=safeUrl(l.url);if(!url)return "";const known=properties.find(p=>(p.links||[]).some(x=>x.url===url));const img=/^data:image\/(jpeg|png|webp);base64,/.test(l.image||"")?'<img alt="追加した物件画像" src="'+escapeHtml(l.image)+'" loading="lazy">':'<div class="preview-placeholder">画像なし · LINK</div>';
- return '<article class="preview-card">'+img+'<div><small>'+escapeHtml(new URL(url).hostname)+'</small><h3><a href="'+escapeHtml(url)+'" target="_blank" rel="noopener noreferrer">'+escapeHtml(l.title||known?.name||new URL(url).hostname)+'</a></h3><p>'+escapeHtml(known?.summary||"未確認の追加URL。リンク先で募集条件をご確認ください。")+'</p><button data-link="'+escapeHtml(l.id)+'">'+(l.archived?"戻す":"保管する")+'</button></div></article>'};
+ const make=l=>{const url=safeUrl(l.url);if(!url)return "";const known=mergedProperties().find(p=>(p.links||[]).some(x=>x.url===url));const img=/^data:image\/(jpeg|png|webp);base64,/.test(l.image||"")?'<img alt="追加した物件画像" src="'+escapeHtml(l.image)+'" loading="lazy">':'<div class="preview-placeholder">画像なし · LINK</div>';
+ return '<article class="preview-card">'+img+'<div><small>'+escapeHtml(new URL(url).hostname)+'</small><h3><a href="'+escapeHtml(url)+'" target="_blank" rel="noopener noreferrer">'+escapeHtml(l.title||known?.name||new URL(url).hostname)+'</a></h3><p>'+escapeHtml(known?.summary||"未確認の追加URL。リンク先で募集条件をご確認ください。")+'</p><button data-link="'+escapeHtml(l.id)+'">'+(l.archived?"戻す":"保管する")+'</button> <button data-edit="'+escapeHtml(l.id)+'">取得・確認して比較に追加</button></div></article>'};
  document.querySelector("#link-cards").innerHTML=state.links.filter(l=>!l.archived).map(make).join("")||"<p>物件URLを追加してください。</p>";
  document.querySelector("#archived-links").innerHTML=state.links.filter(l=>l.archived).map(make).join("")||"<p>ありません。</p>";
 }
 function fillForm(){const f=document.querySelector("#preferences");for(const [k,v] of Object.entries(state.prefs)){const e=f.elements.namedItem(k);if(!e)continue;if(e.type==="checkbox")e.checked=Boolean(v);else e.value=v}}
-try{const saved=JSON.parse(localStorage.getItem(storageKey)||"null");if(saved){state={prefs:{...defaults,...saved.prefs},archived:Array.isArray(saved.archived)?saved.archived:[],restored:Array.isArray(saved.restored)?saved.restored:[],links:Array.isArray(saved.links)?saved.links:[]}}}catch{}
+try{const saved=JSON.parse(localStorage.getItem(storageKey)||"null");if(saved){state={prefs:{...defaults,...saved.prefs,feat_cornerRoom:saved.prefs?.feat_cornerRoom??(saved.prefs?.corner?"prefer":""),feat_rcStructure:saved.prefs?.feat_rcStructure??(saved.prefs?.rc?"prefer":"")},archived:Array.isArray(saved.archived)?saved.archived:[],restored:Array.isArray(saved.restored)?saved.restored:[],links:Array.isArray(saved.links)?saved.links:[],overrides:saved.overrides&&typeof saved.overrides==="object"?saved.overrides:{}}}}catch{}
+for(const [key] of featureLabels){if(state.prefs["feat_"+key]===undefined)state.prefs["feat_"+key]="";}
+document.querySelector("#feature-filters").innerHTML=featureLabels.map(([k,l])=>'<label>'+l+'<select name="feat_'+k+'"><option value="">指定なし</option><option value="prefer">希望（加点）</option><option value="require">必須</option></select></label>').join("");
 fillForm();
 document.querySelector("#preferences").addEventListener("submit",e=>{e.preventDefault();for(const k of Object.keys(defaults)){const el=e.target.elements.namedItem(k);state.prefs[k]=el.type==="checkbox"?el.checked:el.value}persist();render()});
 document.querySelector("#reset-prefs").addEventListener("click",()=>{state.prefs={...defaults};fillForm();persist("検索条件だけを初期値に戻しました。候補・画像は残しています。");render()});
 document.addEventListener("click",e=>{
  const tab=e.target.closest("[data-view]");if(tab){document.querySelectorAll(".view").forEach(x=>x.hidden=x.id!==tab.dataset.view);document.querySelectorAll("[data-view]").forEach(x=>x.setAttribute("aria-pressed",x===tab));}
- const p=e.target.closest("[data-property]");if(p){const id=p.dataset.property;if(p.dataset.action==="archive"){state.archived=[...new Set([...state.archived,id])];state.restored=state.restored.filter(x=>x!==id)}else{state.archived=state.archived.filter(x=>x!==id);state.restored=[...new Set([...state.restored,id])]}persist();render()}
+ const p=e.target.closest("[data-property]");if(p){const id=p.dataset.property;const savedLink=state.links.find(l=>l.id===id);if(savedLink)savedLink.archived=p.dataset.action==="archive";if(p.dataset.action==="archive"){state.archived=[...new Set([...state.archived,id])];state.restored=state.restored.filter(x=>x!==id)}else{state.archived=state.archived.filter(x=>x!==id);state.restored=[...new Set([...state.restored,id])]}persist();render()}
+ const edit=e.target.closest("[data-edit]");if(edit)openEditor(edit.dataset.edit);
  const l=e.target.closest("[data-link]");if(l){const item=state.links.find(x=>x.id===l.dataset.link);if(item){item.archived=!item.archived;persist();renderLinks()}}
 });
 document.querySelector("#add-link").addEventListener("submit",async e=>{
@@ -106,4 +121,57 @@ const examples=[
  {id:"example-nishikoyama",name:"西小山 徒歩4分",rank:"CHECK",status:"needs_confirmation",summary:"11月10日の会話内調査例。現在の募集・必須月額費用は再確認。",rent:130000,managementFee:5000,totalMonthlyCost:135000,area:42.1,layout:"2DK",built:"1994",stations:[{name:"西小山",minutes:4}],occupancy:{twoPeople:true},lastCheckedAt:"2026-11-10T00:00:00+09:00",links:[{label:"HOME'S",url:"https://www.homes.co.jp/chintai/b-1270350001645/"}]},
  {id:"example-south-hills",name:"サウスヒルズK",room:"202",rank:"CHECK",status:"needs_confirmation",summary:"11月10日の会話内調査例。管理費「－」を0円とはせず、二人入居・総額・募集は要確認。",rent:120000,area:38.5,layout:"2DK",stations:[{name:"馬込",minutes:12},{name:"西馬込",minutes:12}],lastCheckedAt:"2026-11-10T00:00:00+09:00",links:[{label:"HOME'S",url:"https://www.homes.co.jp/chintai/room/823585c9e7059a5b910cd44ba30de43ab0beedaa/"}]}
 ];
+for(const fresh of [{"id":"example-nishikoyama","floor":2,"totalFloors":5,"built":"1994-04","direction":"東","structure":"RC","features":{"cornerRoom":true,"rcStructure":true,"bathToilet":true,"indoorLaundry":true,"washstand":true,"autoLock":true,"elevator":true,"aircon":true,"washlet":true,"reheat":false,"southFacing":false,"parking":false,"petAllowed":false},"factSource":"https://www.homes.co.jp/chintai/b-1270350001645/","factCheckedAt":"2026-11-10","summary":"11月10日HOME'S公開本文確認。家賃＋管理費13.5万円。その他必須月額費用・申込有無は要確認。"},{"id":"example-south-hills","floor":2,"totalFloors":2,"built":"1994-05","direction":"南","structure":"木造","features":{"cornerRoom":true,"rcStructure":false,"bathToilet":true,"indoorLaundry":true,"autoLock":false,"aircon":true,"washlet":true,"reheat":true,"southFacing":true,"parking":false,"petAllowed":false,"monitor":true,"bicycle":true},"factSource":"https://www.homes.co.jp/chintai/room/823585c9e7059a5b910cd44ba30de43ab0beedaa/","factCheckedAt":"2026-11-10","summary":"11月10日HOME'S公開本文確認。木造・南向き最上階角部屋。管理費「－」は不明のまま。二人入居・申込有無は要確認。"}])Object.assign(examples.find(p=>p.id===fresh.id),fresh);
 Promise.all([fetch("data/properties.json"),fetch("data/updates.json")]).then(async([p,u])=>{if(!p.ok||!u.ok)throw Error("データを読み込めませんでした。再読み込みしてください。");properties=[...examples,...await p.json()];updates=await u.json();render()}).catch(e=>document.querySelector("#overview").textContent=e.message);
+
+let editingId="";
+const numericFields=["rent","managementFee","area"];
+function openEditor(id){
+ editingId=id;const p=mergedProperties().find(x=>x.id===id)||{},l=state.links.find(x=>x.id===id);
+ const f=document.querySelector("#facts");f.reset();f.elements.source.value=p.factSource||p.links?.[0]?.url||l?.url||"";f.elements.name.value=p.name||l?.title||"追加物件";
+ numericFields.forEach(k=>f.elements[k].value=typeof p[k]==="number"?p[k]:"");f.elements.layout.value=p.layout||"";f.elements.twoPeople.value=typeof p.occupancy?.twoPeople==="boolean"?String(p.occupancy.twoPeople):"";
+ document.querySelector("#fact-features").innerHTML=featureLabels.map(([key,label])=>'<label>'+label+'<select name="fact_'+key+'"><option value="">不明</option><option value="true">あり・該当</option><option value="false">なし・非該当</option></select></label>').join("");
+ featureLabels.forEach(([key])=>{const v=featureValue(p,key);f.elements["fact_"+key].value=v===null?"":String(v)});
+ document.querySelector("#fact-name").textContent="元の記録は残し、確認した情報を重ねて保存します。";
+ document.querySelector("#fetch-status").textContent="";document.querySelector("#fact-editor").showModal();
+}
+function parseFactsText(text){
+ const result={features:{}};
+ const rules={cornerRoom:/角部屋/,rcStructure:/鉄筋コンクリート|\bRC\b/,bathToilet:/バス[・、]?トイレ別|バストイレ別/,washstand:/独立洗面台|洗面所独立/,indoorLaundry:/室内洗濯機置場|洗濯機置場.*室内/,dryer:/浴室乾燥機/,reheat:/追い?焚き?/,washlet:/温水洗浄便座/,autoLock:/オートロック/,monitor:/TVモニタ|TV付|モニター付インターホン/,delivery:/宅配ボックス/,elevator:/エレベーター/,aircon:/エアコン/,twoBurners:/[23２３]口.*コンロ|コンロ.*[23２３]口/,internetFree:/インターネット無料|ネット無料/,bicycle:/駐輪場/,balcony:/バルコニー/};
+ // Only isolated positive lines are proposed. Whole-page recommendation blocks must not be used.
+ for(const line of text.split(/\n/).map(x=>x.trim()).filter(x=>x&&x.length<90)){
+  if(/なし|無し|不可|未確認|非該当|対象外|相談|おすすめ|希望|条件|検索/.test(line))continue;
+  for(const [k,re] of Object.entries(rules))if(re.test(line))result.features[k]=true;
+ }
+ return result;
+}
+function applyText(){const f=document.querySelector("#facts"),r=parseFactsText(f.elements.text.value);let count=0;for(const[k,v]of Object.entries(r.features)){const el=f.elements["fact_"+k];if(el&&el.value===""){el.value=String(v);count++}}
+ document.querySelector("#fetch-status").textContent=count+"項目の候補を補いました。推薦物件や検索条件が混ざっていないか、元ページと照合してから保存してください。金額と不明項目は手入力できます。";}
+document.querySelector("#parse-facts").addEventListener("click",applyText);
+document.querySelector("#close-facts").addEventListener("click",()=>document.querySelector("#fact-editor").close());
+document.querySelector("#fetch-facts").addEventListener("click",async e=>{
+ const f=document.querySelector("#facts"),url=safeUrl(f.elements.source.value),s=document.querySelector("#fetch-status");
+ const allowed=["www.homes.co.jp","suumo.jp","www.chintai.net","www.athome.co.jp","www.housecom.jp","myhome.nifty.com","web.canary-app.jp"];
+ if(!url||!allowed.includes(new URL(url).hostname)){s.textContent="対応する公開物件サイトのURLを指定してください。未対応サイトは詳細本文を貼り付けて確認できます。";return}
+ const target=editingId;e.target.disabled=true;s.textContent="公開ページを取得中…";
+ try{const r=await fetch(url,{credentials:"omit",mode:"cors",referrerPolicy:"no-referrer",signal:AbortSignal.timeout(12000)});
+ if(!r.ok)throw Error("HTTP "+r.status);const text=await r.text();if(text.length>3000000)throw Error("ページが大きすぎます");
+ if(editingId!==target||!document.querySelector("#fact-editor").open)return;
+ const doc=new DOMParser().parseFromString(text,"text/html");doc.querySelectorAll("script,style,nav,header,footer").forEach(x=>x.remove());
+ f.elements.text.value=(doc.body?.textContent||"").slice(0,30000);s.textContent="本文を取得しました。この部屋の設備欄だけに絞ってから「本文から候補」を押してください。";
+ }catch(err){if(editingId===target)s.textContent="このブラウザーでは取得できませんでした（通信・サイトのCORS制限等）。元ページの詳細本文を貼り付けるか、確認項目を編集してください。取得済みにはしていません。";}
+ finally{e.target.disabled=false}
+});
+document.querySelector("#facts").addEventListener("submit",e=>{
+ e.preventDefault();const f=e.target,url=safeUrl(f.elements.source.value);if(!url)return;
+ const old=mergedProperties().find(x=>x.id===editingId)||{},patch={name:f.elements.name.value.trim(),features:{},factSource:url,factCheckedAt:new Date().toISOString(),factNote:f.elements.note.value};
+ for(const k of numericFields)patch[k]=f.elements[k].value===""?null:Number(f.elements[k].value);
+ patch.totalMonthlyCost=typeof patch.rent==="number"&&typeof patch.managementFee==="number"?patch.rent+patch.managementFee:null;
+ patch.layout=f.elements.layout.value;patch.occupancy={...old.occupancy,twoPeople:f.elements.twoPeople.value===""?null:f.elements.twoPeople.value==="true"};
+ for(const[k]of featureLabels)patch.features[k]=f.elements["fact_"+k].value===""?null:f.elements["fact_"+k].value==="true";
+ const backup=JSON.stringify(state),link=state.links.find(l=>l.id===editingId);
+ if(link)link.property={...old,...patch,id:link.id,status:"needs_confirmation",summary:"本人確認入力。募集の申込有無は未確認。",lastCheckedAt:old.lastCheckedAt||patch.factCheckedAt};
+ else state.overrides[editingId]={...state.overrides[editingId],...patch};
+ if(!persist()){state=JSON.parse(backup);return}
+ document.querySelector("#fact-editor").close();render();
+});
