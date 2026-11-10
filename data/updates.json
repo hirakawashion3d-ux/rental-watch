@@ -1,5 +1,14 @@
 [
   {
+    "id": "u-20261110-search-brief-reset",
+    "timestamp": "2026-11-10T12:00:00+09:00",
+    "type": "condition_change",
+    "title": "検索条件を日本橋・目黒への二人暮らしに再整理",
+    "description": "本人の最新条件は二人暮らし・家賃15万円ほど・日本橋と目黒への通勤。角部屋とRC造は満たせばプラスの希望条件。管理費込みか、間取り・最低面積・通勤上限・入居時期は未確定。旧8件と過去履歴は保持し、旧通勤先・募集情報を現行と混同しない表示へ変更。新掲載例2件は要確認として別枠比較。外部問い合わせ・自動監視再開なし。",
+    "previousValue": "中央区・清澄白河・森下・菊川を中心に旧通勤条件で評価",
+    "newValue": "日本橋・目黒の両通勤と二人暮らし・15万円前後を軸に再比較"
+  },
+  {
     "id": "u-20261010-1237-shuwa-nihonbashi-hakozaki-residence-915-ended",
     "propertyId": "shuwa-nihonbashi-hakozaki-residence-915",
     "timestamp": "2026-10-10T12:37:24+09:00",
