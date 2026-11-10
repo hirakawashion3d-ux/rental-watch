@@ -26,19 +26,20 @@ function matches(p) {
   return p.status === "active";
 }
 function propertyCard(p) {
+  const historical = new Date(p.lastCheckedAt) < new Date("2026-11-10T00:00:00+09:00");
   const stations = p.stations?.map(s => `${escapeHtml(s.name)} 徒歩${escapeHtml(s.minutes)}分`).join(" / ") || "未確認";
   const availability = p.availability || {};
   const review = p.layoutReview || {}, building = p.buildingReview || {};
-  const links = p.links?.map(l => `<li><a href="${escapeHtml(l.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(l.label)}</a> ${badge(statusMeta, l.status)}${l.note ? ` <span class="muted">${escapeHtml(l.note)}</span>` : ""}</li>`).join("") || "<li>未確認</li>";
+  const links = p.links?.map(l => `<li><a href="${escapeHtml(l.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(l.label)}</a> ${badge(statusMeta, historical ? "needs_confirmation" : l.status)}${l.note ? ` <span class="muted">${escapeHtml(l.note)}</span>` : ""}</li>`).join("") || "<li>未確認</li>";
   const amenities = [ ...p.amenities || [], p.pet, p.soundproofing ].filter(Boolean).map(a => `<span class="tag">${escapeHtml(a)}</span>`).join("") || "<span class=\"muted\">未確認</span>";
   const title = `${escapeHtml(p.name)}${p.room ? ` <span>${escapeHtml(p.room)}</span>` : ""}`;
   return `<article class="property-card" id="property-${escapeHtml(p.id)}">
-    <div class="card-header"><div class="badges">${badge(rankMeta, p.rank)} ${badge(statusMeta, p.status)}</div><p class="checked">最終確認 ${displayDate(p.lastCheckedAt)}</p></div>
-    <h3>${title}</h3><p class="summary">${escapeHtml(p.summary)}</p>
+    <div class="card-header"><div class="badges">${historical ? `<span class="badge status-check">旧情報・要再確認</span><span class="badge">旧${(rankMeta[p.rank] || ["評価なし"])[0]}</span>` : `${badge(rankMeta, p.rank)} ${badge(statusMeta, p.status)}`}</div><p class="checked">最終確認 ${displayDate(p.lastCheckedAt)}</p></div>
+    <h3>${title}</h3><p class="summary">${historical ? "以下は最終確認日時点の記録です。現在の募集状況・価格・今回条件への適合は未確認。<br>" : ""}${escapeHtml(p.summary)}</p>
     <dl class="key-facts"><div><dt>総額</dt><dd>${money(p.totalMonthlyCost)}</dd></div><div><dt>間取り・面積</dt><dd>${missing(p.layout)} / ${missing(p.area)}㎡</dd></div><div><dt>階数</dt><dd>${p.floor ? `${p.floor}階${p.totalFloors ? ` / ${p.totalFloors}階建` : ""}` : "未確認"}</dd></div><div><dt>最寄り駅</dt><dd>${stations}</dd></div></dl>
     <details><summary>詳細を表示</summary>
       <div class="detail-grid"><section><h4>基本情報</h4><dl>${row("住所", p.address)}${row("対象エリア", p.areaName)}${row("賃料", money(p.rent))}${row("管理費", money(p.managementFee))}${row("敷金", money(p.deposit))}${row("礼金", money(p.keyMoney))}${row("築年月", p.built)}${row("方角", p.direction)}${row("入居可能", availability.moveInDate)}</dl></section>
-      <section><h4>交通・通勤</h4><dl>${row("最寄り駅", stations)}${row("水天宮前駅まで", p.commute?.suitenguu)}${row("人形町駅まで", p.commute?.ningyocho)}${row("渋谷方面", p.commute?.shibuya)}${row("虎ノ門方面", p.commute?.toranomon)}</dl></section>
+      <section><h4>旧条件での交通・通勤（参考記録）</h4><dl>${row("最寄り駅", stations)}${row("水天宮前駅まで", p.commute?.suitenguu)}${row("人形町駅まで", p.commute?.ningyocho)}${row("渋谷方面", p.commute?.shibuya)}${row("虎ノ門方面", p.commute?.toranomon)}</dl></section>
       <section><h4>入居条件</h4><dl>${row("二人入居可", p.occupancy?.twoPeople ? "可" : "未確認")}${row("同棲可", p.occupancy?.cohabitation ? "可" : "未確認")}${row("ルームシェア可", p.occupancy?.roomShare ? "可" : "未確認")}${row("単身限定", p.occupancy?.singleOnly ? "はい" : "未確認")}${row("根拠", p.occupancy?.evidence)}</dl></section>
       <section><h4>掲載確認</h4><dl>${row("現況", availability.occupancyStatus)}${row("掲載更新日", availability.listingUpdatedAt)}${row("空室・複数サイト", availability.consistency)}${row("URL確認", availability.urlCheck)}${row("電話確認", availability.phoneCheckRequired ? "要" : "不要・未確認")}${row("注意事項", availability.notes)}</dl></section></div>
       <section><h4>設備</h4><div class="tags">${amenities}</div></section>
@@ -57,10 +58,10 @@ function updateLinks(update, property) {
 }
 function render() {
   const visible = properties.filter(matches);
-  const active = properties.filter(p => p.status === "active");
+  const active = [];
   const counts = { A: 0, B: 0, CHECK: 0, HOLD: 0 }; properties.forEach(p => { if (counts[p.rank] !== undefined) counts[p.rank]++; });
   const latestUpdated = properties.length ? Math.max(...properties.map(p => new Date(p.updatedAt))) : null;
-  document.querySelector("#overview").innerHTML = `<div><span>最終更新</span><strong>${displayDate(latestUpdated)}</strong></div><div><span>現在の募集中候補</span><strong>${active.length}件</strong></div><div class="count-pills">${["A","B","CHECK","HOLD"].map(r => `<span>${rankMeta[r][0]} <b>${counts[r]}</b></span>`).join("")}</div>`;
+  document.querySelector("#overview").innerHTML = `<div><span>旧物件データ更新</span><strong>${displayDate(latestUpdated)}</strong></div><div><span>今回確認済みの契約可能物件</span><strong>${active.length}件</strong></div><div class="count-pills">${["A","B","CHECK","HOLD"].map(r => `<span>${rankMeta[r][0]} <b>${counts[r]}</b></span>`).join("")}</div>`;
   document.querySelector("#filters").innerHTML = filters.map(([id,label]) => `<button class="filter ${id === currentFilter ? "selected" : ""}" data-filter="${id}" aria-pressed="${id === currentFilter}">${label}</button>`).join("");
   document.querySelectorAll(".filter").forEach(btn => btn.addEventListener("click", () => { currentFilter = btn.dataset.filter; render(); }));
   const sortedUpdates = [...updates].sort((a,b) => new Date(b.timestamp)-new Date(a.timestamp));
